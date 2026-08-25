@@ -1,0 +1,447 @@
+/* ========================================
+   assets/css/animations.css
+   ======================================== */
+
+/* ----- INTRO ANIMATIONS ----- */
+#intro-overlay.open .left-door {
+  transform: translateX(-115%) scaleX(0.9);
+  opacity: 0.35;
+}
+
+#intro-overlay.open .right-door {
+  transform: translateX(115%) scaleX(0.9);
+  opacity: 0.35;
+}
+
+#intro-overlay.open #intro-logo {
+  opacity: 1;
+  animation: logoGlow 0.9s ease-out forwards;
+}
+
+#intro-overlay.hidden {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.65s ease;
+}
+
+@keyframes logoGlow {
+  0% { opacity: 0; transform: translate(-50%, -50%) scale(0.88); filter: blur(8px); }
+  45% { opacity: 1; transform: translate(-50%, -50%) scale(1.05); filter: blur(0); }
+  70% { transform: translate(-50%, -50%) scale(0.98); }
+  100% { opacity: 1; transform: translate(-50%, -50%) scale(1); filter: blur(0); }
+}
+
+/* ----- GRAVITY LANDING EFFECTS ----- */
+.gravity-element {
+  opacity: 0;
+  transform: translateY(-120px);
+  transition: none;
+}
+
+.gravity-element.landed {
+  opacity: 1;
+  transform: translateY(0);
+  animation: gravityBounce 1.2s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+}
+
+@keyframes gravityBounce {
+  0% { opacity: 0; transform: translateY(-120px) scale(0.9); }
+  40% { opacity: 1; transform: translateY(20px) scale(1.02); }
+  55% { transform: translateY(-8px) scale(0.98); }
+  70% { transform: translateY(6px) scale(1.01); }
+  85% { transform: translateY(-3px) scale(0.99); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Hero specific landing */
+.hero-text.gravity-element.landed {
+  animation: gravityBounce 1s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+  animation-delay: 0.1s;
+}
+
+.profile-image-wrapper.gravity-element.landed {
+  animation: gravityBounce 1.2s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+  animation-delay: 0.2s;
+}
+
+.stat-card.gravity-element.landed {
+  animation: gravityBounce 0.9s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+}
+
+.stat-card:nth-child(1) { animation-delay: 0.3s; }
+.stat-card:nth-child(2) { animation-delay: 0.4s; }
+.stat-card:nth-child(3) { animation-delay: 0.5s; }
+.stat-card:nth-child(4) { animation-delay: 0.6s; }
+
+/* ----- NAVIGATION FADE SLIDE ----- */
+.nav-slide {
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1), transform 0.6s cubic-bezier(0.22, 1, 0.36, 1), background 0.3s ease, color 0.3s ease;
+  transition-delay: var(--nav-delay, 0ms);
+}
+
+.nav-slide.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ----- SECTION REVEAL ----- */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  filter: blur(6px);
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+              filter 0.7s ease;
+  will-change: opacity, transform, filter;
+}
+
+.scroll-reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+
+/* ----- FLOATING CARDS ----- */
+.float-card {
+  animation: floatCard 4s ease-in-out infinite;
+}
+
+@keyframes floatCard {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+/* ----- PROJECT CARD LIFT ----- */
+.project-card {
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-12px) scale(1.02);
+  box-shadow: 0 30px 60px rgba(75, 139, 190, 0.2);
+}
+
+/* ----- GLOW BORDER CONTACT ----- */
+.contact-form,
+.contact-info {
+  position: relative;
+  transition: border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+.contact-form:focus-within {
+  border-color: var(--primary);
+  box-shadow: 0 0 40px rgba(75, 139, 190, 0.1), inset 0 0 40px rgba(75, 139, 190, 0.05);
+  animation: glowPulse 2s ease-in-out infinite;
+}
+
+@keyframes glowPulse {
+  0%, 100% { box-shadow: 0 0 30px rgba(75, 139, 190, 0.08), inset 0 0 30px rgba(75, 139, 190, 0.03); }
+  50% { box-shadow: 0 0 60px rgba(75, 139, 190, 0.15), inset 0 0 60px rgba(75, 139, 190, 0.06); }
+}
+
+/* ----- SKILL CARD TILT (hover) ----- */
+.skill-category {
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.3s ease;
+  transform-style: preserve-3d;
+  perspective: 800px;
+}
+
+.skill-category:hover {
+  transform: rotateX(2deg) rotateY(4deg) translateY(-6px);
+}
+
+/* ----- TIMELINE ANIMATION (AOS overrides) ----- */
+[data-aos="fade-right"] {
+  transform: translateX(-60px);
+  opacity: 0;
+  transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+[data-aos="fade-right"].aos-animate {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+[data-aos="fade-left"] {
+  transform: translateX(60px);
+  opacity: 0;
+  transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+[data-aos="fade-left"].aos-animate {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+/* ----- CERTIFICATE ZOOM ----- */
+.cert-item {
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.3s ease;
+}
+
+.cert-item:hover {
+  transform: scale(1.05);
+}
+
+/* ----- STATS COUNT UP ----- */
+.stat-number.count-up {
+  animation: countUp 0.8s ease-out forwards;
+}
+
+@keyframes countUp {
+  0% { opacity: 0; transform: scale(0.5); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+/* ----- RING PULSE (already in style.css, but kept for consistency) ----- */
+@keyframes ringPulse {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+  50% { transform: translate(-50%, -50%) scale(1.05); opacity: 0.5; }
+}
+
+/* ----- PARTICLE FLOATING (already in style.css, kept) ----- */
+@keyframes floatParticle {
+  0% { transform: translate(0, 0) scale(1); opacity: 0.2; }
+  100% { transform: translate(60px, -80px) scale(1.8); opacity: 0.8; }
+}
+
+/* ----- SCROLL TRIGGER PROGRESS BAR ANIMATION ----- */
+.progress.animate {
+  animation: fillProgress 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes fillProgress {
+  0% { width: 0%; }
+  100% { width: var(--target-width); }
+}
+
+/* ----- HERO BUTTONS HOVER ----- */
+.hero-buttons .btn-primary,
+.hero-buttons .btn-outline {
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s ease, background 0.3s ease;
+}
+
+.hero-buttons .btn-primary:hover,
+.hero-buttons .btn-outline:hover {
+  transform: translateY(-4px) scale(1.02);
+}
+
+/* ----- HEADER NAV HOVER SCALE ----- */
+.header-nav a {
+  transition: transform 0.2s ease, background 0.3s ease, color 0.3s ease;
+}
+
+.header-nav a:hover {
+  transform: translateX(4px);
+}
+
+/* ----- IMAGE LAZY LOAD FADE ----- */
+img[data-src] {
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+img.loaded {
+  opacity: 1;
+}
+
+/* ----- SCROLL MOMENTUM SMOOTH (Lenis handled in JS) ----- */
+html.lenis {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+/* ----- PARALLAX (via GSAP ScrollTrigger) ----- */
+.parallax-section {
+  will-change: transform;
+}
+
+/* ----- LOADING SHIMMER FOR CARDS ----- */
+.shimmer {
+  background: linear-gradient(90deg, 
+    var(--card-bg) 25%, 
+    rgba(55, 118, 171, 0.08) 50%, 
+    var(--card-bg) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* ----- MODAL ZOOM (for certifications) ----- */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(8px);
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.modal-content {
+  max-width: 80vw;
+  max-height: 80vh;
+  transform: scale(0.8);
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.6);
+}
+
+.modal-overlay.active .modal-content {
+  transform: scale(1);
+}
+
+.modal-content img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.modal-close {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  background: rgba(248, 250, 252, 0.1);
+  border: 1px solid rgba(248, 250, 252, 0.2);
+  color: var(--paper);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  font-size: 1.4rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-close:hover {
+  background: rgba(248, 250, 252, 0.2);
+  transform: rotate(90deg);
+}
+
+/* ----- RESPONSIVE TWEAKS FOR ANIMATIONS ----- */
+@media (max-width: 992px) {
+  .gravity-element {
+    transform: translateY(-60px);
+  }
+  
+  #intro-logo {
+    font-size: 2.2rem;
+    letter-spacing: 3px;
+  }
+}
+
+@media (max-width: 576px) {
+  #intro-logo {
+    font-size: 1.6rem;
+    letter-spacing: 2px;
+  }
+  
+  .stat-card.gravity-element.landed {
+    animation-duration: 0.7s;
+  }
+  
+  .profile-image-wrapper.gravity-element.landed {
+    animation-duration: 0.9s;
+  }
+}
+
+/* ----- REDUCED MOTION PREFERENCE ----- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  .gravity-element {
+    opacity: 1;
+    transform: none !important;
+  }
+  
+  .gravity-element.landed {
+    animation: none !important;
+    opacity: 1;
+    transform: none !important;
+  }
+  
+  .stat-number.count-up {
+    animation: none !important;
+  }
+  
+  .progress.animate {
+    animation: none !important;
+    width: var(--target-width) !important;
+  }
+  
+  .project-card:hover {
+    transform: none !important;
+  }
+  
+  .skill-category:hover {
+    transform: none !important;
+  }
+  
+  .cert-item:hover {
+    transform: none !important;
+  }
+  
+  #intro-overlay.open .left-door,
+  #intro-overlay.open .right-door {
+    transition-duration: 0.01ms !important;
+  }
+  
+  .float-card {
+    animation: none !important;
+  }
+  
+  .glow-ring {
+    animation: none !important;
+  }
+  
+  .particle {
+    animation: none !important;
+  }
+  
+  .modal-overlay.active .modal-content {
+    transform: none !important;
+  }
+}

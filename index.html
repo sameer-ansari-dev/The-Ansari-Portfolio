@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Ansari Mohammed Sameer - Backend developer portfolio focused on Python, Flask, PostgreSQL, and modern web systems.">
+  <title>Ansari Mohammed Sameer | Backend Developer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
+  <script src="assets/js/main.js" defer></script>
+</head>
+<body>
+  <div class="page-shell">
+    <header class="site-header" id="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="#hero" aria-label="Go to top">
+          <span class="brand-mark">AS</span>
+          <span class="brand-text">Ansari Mohammed Sameer</span>
+        </a>
+        <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+        <nav class="site-nav" aria-label="Primary navigation">
+          <a href="#hero" class="nav-link is-active">Home</a>
+          <a href="#stats" class="nav-link">Stats</a>
+          <a href="#about" class="nav-link">About</a>
+          <a href="#projects" class="nav-link">Projects</a>
+          <a href="#certificates" class="nav-link">Certificates</a>
+          <a href="#journey" class="nav-link">Journey</a>
+          <a href="#contact" class="nav-link">Contact</a>
+        </nav>
+        <div class="header-actions">
+          <div class="social-links" aria-label="Social links">
+            <a href="#" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+            <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+            <a href="#" aria-label="Email"><i class="fa-regular fa-envelope"></i></a>
+          </div>
+          <a href="#" class="resume-button">Resume</a>
+        </div>
+      </div>
+      <div class="nav-backdrop" hidden></div>
+    </header>
+
+    <main>
+      <section class="hero section" id="hero">
+        <div class="container hero-grid">
+          <div class="hero-copy">
+            <p class="eyebrow">Backend Developer • BSc IT Student</p>
+            <h1>Ansari Mohammed Sameer</h1>
+            <p class="role-line">Python Developer <span>•</span> Flask Developer <span>•</span> Backend Developer</p>
+            <p class="hero-description">
+              I design and ship backend systems, workflow automation, and database-driven applications with a focus on clean architecture, performance, and maintainability.
+            </p>
+            <div class="hero-actions">
+              <a href="#projects" class="button button-primary">View Projects</a>
+              <a href="#" class="button button-secondary resume-trigger">Download Resume</a>
+              <a href="#contact" class="button button-secondary">Contact</a>
+            </div>
+          </div>
+
+          <div class="hero-visual" aria-label="Profile and technology showcase">
+            <div class="profile-orbit">
+              <div class="orbit-ring orbit-ring-1"></div>
+              <div class="orbit-ring orbit-ring-2"></div>
+              <div class="orbit-ring orbit-ring-3"></div>
+              <div class="orbit-core">
+                <img src="assets/images/profile.png" alt="Ansari Mohammed Sameer">
+              </div>
+              <span class="tech-badge tech-badge-python">Python</span>
+              <span class="tech-badge tech-badge-flask">Flask</span>
+              <span class="tech-badge tech-badge-postgres">PostgreSQL</span>
+              <span class="tech-badge tech-badge-react">React</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="stats section section-tight" id="stats">
+        <div class="container">
+          <div class="section-heading">
+            <p class="eyebrow">Selected numbers</p>
+            <h2>Built to measure progress, not decoration.</h2>
+          </div>
+          <div class="stats-grid">
+            <article class="stat-card">
+              <i class="fa-solid fa-code"></i>
+              <strong data-count="12">0</strong>
+              <span>Projects</span>
+            </article>
+            <article class="stat-card">
+              <i class="fa-solid fa-certificate"></i>
+              <strong data-count="6">0</strong>
+              <span>Certificates</span>
+            </article>
+            <article class="stat-card">
+              <i class="fa-solid fa-calendar-days"></i>
+              <strong data-count="4">0</strong>
+              <span>Years Learning</span>
+            </article>
+            <article class="stat-card">
+              <i class="fa-brands fa-github"></i>
+              <strong data-count="87">0</strong>
+              <span>GitHub Repositories</span>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="about">
+        <div class="container">
+          <div class="section-heading">
+            <p class="eyebrow">About</p>
+            <h2>A compact summary of my background and focus.</h2>
+          </div>
+          <div class="feature-grid">
+            <article class="feature-card">
+              <i class="fa-solid fa-graduation-cap"></i>
+              <h3>Education</h3>
+              <p>BSc IT, Mumbai University, 2022 to 2025.</p>
+            </article>
+            <article class="feature-card">
+              <i class="fa-solid fa-briefcase"></i>
+              <h3>Background</h3>
+              <p>Hands-on work in Python, Flask, PostgreSQL, and backend tooling.</p>
+            </article>
+            <article class="feature-card">
+              <i class="fa-solid fa-heart"></i>
+              <h3>Interests</h3>
+              <p>Developer tooling, system design, automation, and open-source workflows.</p>
+            </article>
+            <article class="feature-card">
+              <i class="fa-solid fa-bullseye"></i>
+              <h3>Goals</h3>
+              <p>Grow into a full-stack engineer shipping dependable, polished products.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="projects">
+        <div class="container">
+          <div class="section-heading">
+            <p class="eyebrow">Projects</p>
+            <h2>The strongest work, presented with structure and clarity.</h2>
+          </div>
+          <div class="project-stack">
+            <article class="project-card project-card-left">
+              <div class="project-visual project-visual-fuelmate">
+                <span class="project-screenshot-label">FuelMate</span>
+              </div>
+              <div class="project-content">
+                <p class="project-kicker">Featured project</p>
+                <h3>FuelMate</h3>
+                <p>Fuel management system with Flask, PostgreSQL, and analytics-focused workflows.</p>
+                <div class="tech-row">
+                  <span>Python</span><span>Flask</span><span>PostgreSQL</span>
+                </div>
+                <div class="project-links">
+                  <a href="#"><i class="fa-brands fa-github"></i> GitHub</a>
+                  <a href="#"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="project-card project-card-right">
+              <div class="project-visual project-visual-concierge">
+                <span class="project-screenshot-label">Concierge Lifestyle</span>
+              </div>
+              <div class="project-content">
+                <p class="project-kicker">Featured project</p>
+                <h3>Concierge Lifestyle</h3>
+                <p>A scheduling and service platform with a Flask backend and automated user flows.</p>
+                <div class="tech-row">
+                  <span>Flask</span><span>JavaScript</span><span>SQLite</span>
+                </div>
+                <div class="project-links">
+                  <a href="#"><i class="fa-brands fa-github"></i> GitHub</a>
+                  <a href="#"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="project-card project-card-left">
+              <div class="project-visual project-visual-automation">
+                <span class="project-screenshot-label">File Automation Kit</span>
+              </div>
+              <div class="project-content">
+                <p class="project-kicker">Featured project</p>
+                <h3>File Automation Kit</h3>
+                <p>Automation toolkit for organizing, renaming, and backing up files with Python scripts.</p>
+                <div class="tech-row">
+                  <span>Python</span><span>CLI</span><span>Automation</span>
+                </div>
+                <div class="project-links">
+                  <a href="#"><i class="fa-brands fa-github"></i> GitHub</a>
+                  <a href="#"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo</a>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="certificates">
+        <div class="container">
+          <div class="section-heading">
+            <p class="eyebrow">Certificates</p>
+            <h2>A cleaner gallery with modal preview support.</h2>
+          </div>
+          <div class="certificate-grid">
+            <button class="certificate-card" data-title="Python Essentials 1" data-issuer="Cisco Networking Academy" data-year="2024" data-preview="assets/images/profile.png" type="button">
+              <div class="certificate-image certificate-image-placeholder">
+                <img src="assets/images/profile.png" alt="Python Essentials 1 preview">
+              </div>
+              <div class="certificate-meta">
+                <h3>Python Essentials 1</h3>
+                <p>Cisco Networking Academy • 2024</p>
+                <span>View certificate</span>
+              </div>
+            </button>
+            <button class="certificate-card" data-title="Microsoft Office" data-issuer="Microsoft" data-year="2023" data-preview="assets/images/MS-Office.png" type="button">
+              <div class="certificate-image">
+                <img src="assets/images/MS-Office.png" alt="Microsoft Office certificate">
+              </div>
+              <div class="certificate-meta">
+                <h3>Microsoft Office</h3>
+                <p>Microsoft • 2023</p>
+                <span>View certificate</span>
+              </div>
+            </button>
+            <button class="certificate-card" data-title="Database Fundamentals" data-issuer="Self study" data-year="2024" data-preview="assets/images/profile.png" type="button">
+              <div class="certificate-image certificate-image-placeholder">
+                <img src="assets/images/profile.png" alt="Database Fundamentals preview">
+              </div>
+              <div class="certificate-meta">
+                <h3>Database Fundamentals</h3>
+                <p>Self study • 2024</p>
+                <span>View certificate</span>
+              </div>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="journey">
+        <div class="container">
+          <div class="section-heading">
+            <p class="eyebrow">Journey</p>
+            <h2>Progression without clutter.</h2>
+          </div>
+          <div class="timeline">
+            <article class="timeline-item"><span>2022</span><p>Started BSc IT.</p></article>
+            <article class="timeline-item"><span>2023</span><p>Built a stronger Python foundation.</p></article>
+            <article class="timeline-item"><span>2024</span><p>Started Flask-based backend projects.</p></article>
+            <article class="timeline-item"><span>2025</span><p>Shipped FuelMate and File Automation Kit.</p></article>
+            <article class="timeline-item"><span>2026</span><p>Building polished portfolio-grade products.</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="contact">
+        <div class="container">
+          <div class="section-heading">
+            <p class="eyebrow">Contact</p>
+            <h2>Ready for backend, automation, or product work.</h2>
+          </div>
+          <div class="contact-grid">
+            <form class="contact-form">
+              <label>
+                Name
+                <input type="text" placeholder="Your name" required>
+              </label>
+              <label>
+                Email
+                <input type="email" placeholder="you@example.com" required>
+              </label>
+              <label>
+                Message
+                <textarea rows="5" placeholder="What are you building?"></textarea>
+              </label>
+              <button type="submit" class="button button-primary">Send message</button>
+            </form>
+            <aside class="contact-panel">
+              <p><i class="fa-regular fa-envelope"></i> ansari@example.com</p>
+              <p><i class="fa-brands fa-github"></i> github.com/ansari</p>
+              <p><i class="fa-brands fa-linkedin-in"></i> linkedin.com/in/ansari</p>
+              <p><i class="fa-solid fa-location-dot"></i> Mumbai, India</p>
+            </aside>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div class="modal-overlay" hidden>
+    <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="certificate-title">
+      <button class="modal-close" type="button" aria-label="Close preview"><i class="fa-solid fa-xmark"></i></button>
+      <div class="modal-preview">
+        <img src="" alt="">
+      </div>
+      <div class="modal-copy">
+        <h3 id="certificate-title"></h3>
+        <p></p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
