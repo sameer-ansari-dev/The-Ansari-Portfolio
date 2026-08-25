@@ -1,0 +1,362 @@
+{
+  "profile": {
+    "name": "Ansari Mohammed Sameer",
+    "eyebrow": "Backend Developer • BSc IT Graduate",
+    "status_text": "Available for Backend & Engineering Roles",
+    "status_active": true,
+    "role_typing": [
+      "Python Backend Engineer",
+      "Flask & FastAPI Specialist",
+      "PostgreSQL & Database Architect",
+      "RESTful API Developer",
+      "Workflow Automation Builder"
+    ],
+    "description": "I engineer high-performance backend systems, robust RESTful APIs, and intelligent workflow automation with a relentless focus on clean architecture, database efficiency, and scalability.",
+    "email": "sameeransarispidy4444@gamil.com",
+    "github": "https://github.com/sameer-ansari-dev",
+    "linkedin": "https://www.linkedin.com/in/ansari-mohammed-sameer-naseem",
+    "address": "Gate no. 18, Navpada people welfare, Ghas bazar, Bandra East, Mumbai 400051",
+    "education": "BSc IT, Mumbai University (2022 - 2025)",
+    "profile_image": "assets/images/profile.png"
+  },
+  "metrics": [
+    {
+      "val": "BSc IT",
+      "label": "Mumbai University"
+    },
+    {
+      "val": "12+",
+      "label": "Projects Built"
+    },
+    {
+      "val": "Production",
+      "label": "Flask & SQL Focus"
+    }
+  ],
+  "stats": [
+    {
+      "id": "stat_1",
+      "icon": "fa-solid fa-code",
+      "count": 12,
+      "label": "Completed Projects",
+      "detail": "Backend engines, automation kits & full-stack apps"
+    },
+    {
+      "id": "stat_2",
+      "icon": "fa-solid fa-certificate",
+      "count": 6,
+      "label": "Certifications",
+      "detail": "Cisco Python, Microsoft & Database standards"
+    },
+    {
+      "id": "stat_3",
+      "icon": "fa-solid fa-calendar-check",
+      "count": 4,
+      "label": "Years Hands-On",
+      "detail": "Continuous coding, architecture & system design"
+    },
+    {
+      "id": "stat_4",
+      "icon": "fa-brands fa-github",
+      "count": 10,
+      "label": "GitHub Repos",
+      "detail": "Open source contributions & documented codebases"
+    }
+  ],
+  "about_cards": [
+    {
+      "id": "about_1",
+      "icon": "fa-solid fa-graduation-cap",
+      "title": "Formal Education",
+      "description": "Bachelor of Science in Information Technology (BSc IT) from Mumbai University (2022–2025), building a solid foundation in computer science, algorithms, and data structures.",
+      "tag": "BSc IT • Mumbai University"
+    },
+    {
+      "id": "about_2",
+      "icon": "fa-solid fa-server",
+      "title": "Backend Engineering",
+      "description": "Specialized in Python web frameworks (Flask, FastAPI), RESTful architectural patterns, asynchronous task handling, and secure authentication workflows.",
+      "tag": "Python • Flask • REST APIs"
+    },
+    {
+      "id": "about_3",
+      "icon": "fa-solid fa-database",
+      "title": "Database Architecture",
+      "description": "Skilled in relational schema design, query optimization, indexing, and ORM integration across PostgreSQL, SQLite, and MySQL databases.",
+      "tag": "PostgreSQL • SQLite • SQLAlchemy"
+    },
+    {
+      "id": "about_4",
+      "icon": "fa-solid fa-gears",
+      "title": "Automation & Tooling",
+      "description": "Passionate about writing Python scripts, CLI tools, and automated pipelines that eliminate repetitive manual workflows and save developer hours.",
+      "tag": "Automation • CLI • DevOps"
+    }
+  ],
+  "skills": [
+    {
+      "id": "sk_1",
+      "category": "backend",
+      "name": "Python (Advanced)",
+      "icon": "fa-brands fa-python"
+    },
+    {
+      "id": "sk_2",
+      "category": "backend",
+      "name": "Flask Framework",
+      "icon": "fa-solid fa-flask"
+    },
+    {
+      "id": "sk_3",
+      "category": "backend",
+      "name": "Django Basics",
+      "icon": "fa-solid fa-cubes"
+    },
+    {
+      "id": "sk_4",
+      "category": "backend",
+      "name": "FastAPI",
+      "icon": "fa-solid fa-bolt"
+    },
+    {
+      "id": "sk_5",
+      "category": "backend",
+      "name": "RESTful APIs",
+      "icon": "fa-solid fa-network-wired"
+    },
+    {
+      "id": "sk_6",
+      "category": "backend",
+      "name": "MVC Architecture",
+      "icon": "fa-solid fa-sitemap"
+    },
+    {
+      "id": "sk_7",
+      "category": "backend",
+      "name": "JWT & Auth",
+      "icon": "fa-solid fa-shield-halved"
+    },
+    {
+      "id": "sk_8",
+      "category": "database",
+      "name": "PostgreSQL",
+      "icon": "fa-solid fa-database"
+    },
+    {
+      "id": "sk_9",
+      "category": "database",
+      "name": "SQLite",
+      "icon": "fa-solid fa-table"
+    },
+    {
+      "id": "sk_10",
+      "category": "database",
+      "name": "MySQL",
+      "icon": "fa-solid fa-server"
+    },
+    {
+      "id": "sk_11",
+      "category": "database",
+      "name": "SQLAlchemy ORM",
+      "icon": "fa-solid fa-code"
+    },
+    {
+      "id": "sk_12",
+      "category": "database",
+      "name": "Schema Design",
+      "icon": "fa-solid fa-diagram-project"
+    },
+    {
+      "id": "sk_13",
+      "category": "database",
+      "name": "Query Optimization",
+      "icon": "fa-solid fa-gauge-high"
+    },
+    {
+      "id": "sk_14",
+      "category": "devops",
+      "name": "Git & GitHub",
+      "icon": "fa-brands fa-git-alt"
+    },
+    {
+      "id": "sk_15",
+      "category": "devops",
+      "name": "Docker",
+      "icon": "fa-brands fa-docker"
+    },
+    {
+      "id": "sk_16",
+      "category": "devops",
+      "name": "Linux / Bash",
+      "icon": "fa-brands fa-linux"
+    },
+    {
+      "id": "sk_17",
+      "category": "devops",
+      "name": "CLI Scripting",
+      "icon": "fa-solid fa-terminal"
+    },
+    {
+      "id": "sk_18",
+      "category": "devops",
+      "name": "Postman API",
+      "icon": "fa-solid fa-paper-plane"
+    },
+    {
+      "id": "sk_19",
+      "category": "devops",
+      "name": "Vercel / Render",
+      "icon": "fa-solid fa-cloud-arrow-up"
+    },
+    {
+      "id": "sk_20",
+      "category": "frontend",
+      "name": "HTML5 Semantic",
+      "icon": "fa-brands fa-html5"
+    },
+    {
+      "id": "sk_21",
+      "category": "frontend",
+      "name": "CSS3 & Modern CSS",
+      "icon": "fa-brands fa-css3-alt"
+    },
+    {
+      "id": "sk_22",
+      "category": "frontend",
+      "name": "JavaScript (ES6+)",
+      "icon": "fa-brands fa-js"
+    },
+    {
+      "id": "sk_23",
+      "category": "frontend",
+      "name": "React Basics",
+      "icon": "fa-brands fa-react"
+    },
+    {
+      "id": "sk_24",
+      "category": "frontend",
+      "name": "Responsive UI",
+      "icon": "fa-solid fa-mobile-screen"
+    },
+    {
+      "id": "sk_25",
+      "category": "frontend",
+      "name": "GSAP Animations",
+      "icon": "fa-solid fa-wand-magic-sparkles"
+    }
+  ],
+  "projects": [
+    {
+      "id": "proj_1",
+      "title": "FuelMate System",
+      "kicker": "Featured Backend Application",
+      "badge": "Flagship Project",
+      "badge_icon": "fa-solid fa-star",
+      "description": "A robust fuel management and tracking platform built with Flask and PostgreSQL. Features real-time consumption logging, analytics summaries, user authentication, and responsive dashboards.",
+      "tech_tags": [
+        "Python",
+        "Flask",
+        "PostgreSQL",
+        "SQLAlchemy",
+        "Chart.js"
+      ],
+      "github_url": "https://github.com/sameer-ansari-dev/FuelMate",
+      "demo_url": "https://fuel-mates-rouge.vercel.app/",
+      "visual_class": "project-visual-fuelmate",
+      "screenshot_label": "FuelMate Management"
+    },
+    {
+      "id": "proj_2",
+      "title": "Concierge Lifestyle",
+      "kicker": "Full-Stack Service System",
+      "badge": "Web Platform",
+      "badge_icon": "fa-solid fa-bell-concierge",
+      "description": "An intuitive lifestyle and concierge scheduling platform. Features automated appointment bookings, responsive client dashboards, dynamic service cataloging, and SQLite database persistence.",
+      "tech_tags": [
+        "Flask",
+        "Python",
+        "JavaScript",
+        "SQLite",
+        "Responsive UI"
+      ],
+      "github_url": "https://github.com/sameer-ansari-dev/Concierge",
+      "demo_url": "",
+      "visual_class": "project-visual-concierge",
+      "screenshot_label": "Concierge Lifestyle"
+    },
+    {
+      "id": "proj_3",
+      "title": "File Automation Kit",
+      "kicker": "Developer Tooling",
+      "badge": "CLI Automation",
+      "badge_icon": "fa-solid fa-terminal",
+      "description": "A high-efficiency Python automation toolkit for batch organizing, renaming, sanitizing, and backing up multi-terabyte directory structures with instant logging and dry-run safety modes.",
+      "tech_tags": [
+        "Python",
+        "CLI Tools",
+        "OS / IO",
+        "Automation",
+        "Logging"
+      ],
+      "github_url": "https://github.com/sameer-ansari-dev/file-automation-kit",
+      "demo_url": "",
+      "visual_class": "project-visual-automation",
+      "screenshot_label": "File Automation Kit"
+    }
+  ],
+  "certificates": [
+    {
+      "id": "cert_1",
+      "title": "Python Essentials 1",
+      "issuer": "Cisco Networking Academy",
+      "year": "2024",
+      "preview": "assets/images/profile.png"
+    },
+    {
+      "id": "cert_2",
+      "title": "Microsoft Office Specialist",
+      "issuer": "Microsoft Certification",
+      "year": "2023",
+      "preview": "assets/images/MS-Office.png"
+    },
+    {
+      "id": "cert_3",
+      "title": "Database Fundamentals & SQL",
+      "issuer": "Specialized Coursework",
+      "year": "2024",
+      "preview": "assets/images/profile.png"
+    }
+  ],
+  "timeline": [
+    {
+      "id": "time_1",
+      "year": "2022",
+      "title": "BSc IT Inception",
+      "description": "Commenced BSc in Information Technology at Mumbai University, diving deep into computer science fundamentals, programming logic, and mathematics."
+    },
+    {
+      "id": "time_2",
+      "year": "2023",
+      "title": "Python Mastery & Automation",
+      "description": "Built extensive Python projects, mastered Object-Oriented Programming (OOP), Data Structures, and began authoring automated workflow scripts."
+    },
+    {
+      "id": "time_3",
+      "year": "2024",
+      "title": "Backend Architecture & Databases",
+      "description": "Transitioned into professional web backends with Flask, mastering PostgreSQL relational design, SQLAlchemy ORMs, and secure RESTful APIs."
+    },
+    {
+      "id": "time_4",
+      "year": "2025",
+      "title": "Shipped Flagship Deployments",
+      "description": "Engineered and shipped FuelMate fuel management system and the File Automation Kit with real-world testing, continuous iteration, and deployment."
+    },
+    {
+      "id": "time_5",
+      "year": "2026",
+      "title": "Scalable Systems & Full-Stack Evolution",
+      "description": "Currently architecting scalable microservices, intelligent backend agents, and looking forward to making impactful contributions to high-growth teams."
+    }
+  ]
+}

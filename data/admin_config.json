@@ -1,0 +1,5 @@
+{
+  "username": "sameer",
+  "password_hash": "scrypt:32768:8:1$DkIA7rt36nM9E2Dd$ec4def1aa3347d566857ff6ff33c87d4e9ffe08d8e8d78f2aa35adb777f549fc39a1b1a94aeac08f78d68880f5e75f073364f9d1c41ea275221d6756dea97a2d",
+  "secret_key": "ansari_super_secret_session_key_2026_dev_portfolio"
+}

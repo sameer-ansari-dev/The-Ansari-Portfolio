@@ -3,202 +3,413 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Ansari Mohammed Sameer - Backend developer portfolio focused on Python, Flask, PostgreSQL, and modern web systems.">
-  <title>Ansari Mohammed Sameer | Backend Developer</title>
+  <meta name="description" content="Ansari Mohammed Sameer - Backend Developer specializing in Python, Flask, PostgreSQL, REST APIs, and automation systems.">
+  <meta name="author" content="Ansari Mohammed Sameer">
+  <meta name="theme-color" content="#0D1117">
+  <title>Ansari Mohammed Sameer | Backend Developer & Python Specialist</title>
+  
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  
+  <!-- Stylesheets -->
   <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/animations.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+
+  <!-- GSAP & Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
   <script src="assets/js/main.js" defer></script>
 </head>
 <body>
+  <!-- Ambient Particle Constellation Canvas -->
+  <canvas id="particle-canvas" class="particle-canvas" aria-hidden="true"></canvas>
+
+  <!-- Scroll Progress Indicator -->
+  <div class="scroll-progress-bar" id="scroll-progress" aria-hidden="true"></div>
+
   <div class="page-shell">
+    <!-- Header -->
     <header class="site-header" id="site-header">
       <div class="container header-inner">
         <a class="brand" href="#hero" aria-label="Go to top">
           <span class="brand-mark">AS</span>
           <span class="brand-text">Ansari Mohammed Sameer</span>
         </a>
-        <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false">
+
+        <button class="nav-toggle" type="button" aria-label="Toggle navigation menu" aria-expanded="false" id="nav-toggle">
           <span></span><span></span><span></span>
         </button>
-        <nav class="site-nav" aria-label="Primary navigation">
+
+        <nav class="site-nav" id="site-nav" aria-label="Primary navigation">
           <a href="#hero" class="nav-link is-active">Home</a>
           <a href="#stats" class="nav-link">Stats</a>
           <a href="#about" class="nav-link">About</a>
+          <a href="#skills" class="nav-link">Skills</a>
           <a href="#projects" class="nav-link">Projects</a>
           <a href="#certificates" class="nav-link">Certificates</a>
           <a href="#journey" class="nav-link">Journey</a>
           <a href="#contact" class="nav-link">Contact</a>
         </nav>
+
         <div class="header-actions">
-          <div class="social-links" aria-label="Social links">
-            <a href="#" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
-            <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-            <a href="#" aria-label="Email"><i class="fa-regular fa-envelope"></i></a>
+          <div class="social-links" aria-label="Social profiles">
+            <a href="https://github.com/sameer-ansari-dev" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile" title="GitHub">
+              <i class="fa-brands fa-github"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/ansari-mohammed-sameer-naseem" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile" title="LinkedIn">
+              <i class="fa-brands fa-linkedin-in"></i>
+            </a>
+            <a href="mailto:sameeransarispidy4444@gamil.com" aria-label="Send Email" title="Email">
+              <i class="fa-regular fa-envelope"></i>
+            </a>
           </div>
-          <a href="#" class="resume-button">Resume</a>
+          <a href="#contact" class="resume-button resume-trigger">
+            <i class="fa-solid fa-file-arrow-down"></i> Resume
+          </a>
         </div>
       </div>
-      <div class="nav-backdrop" hidden></div>
+      <div class="nav-backdrop" id="nav-backdrop" hidden></div>
     </header>
 
     <main>
+      <!-- Hero Section -->
       <section class="hero section" id="hero">
         <div class="container hero-grid">
           <div class="hero-copy">
-            <p class="eyebrow">Backend Developer • BSc IT Student</p>
-            <h1>Ansari Mohammed Sameer</h1>
-            <p class="role-line">Python Developer <span>•</span> Flask Developer <span>•</span> Backend Developer</p>
+            <div class="status-pill">
+              <span class="status-dot"></span>
+              <span>Available for Backend & Engineering Roles</span>
+            </div>
+            
+            <h1 class="hero-title">
+              Ansari Mohammed <span class="gradient-text">Sameer</span>
+            </h1>
+
+            <div class="typing-container" aria-label="Role typing animation">
+              <span class="typing-prefix">I am a </span>
+              <span id="typed-text" class="typed-text"></span>
+              <span class="typing-cursor">|</span>
+            </div>
+
             <p class="hero-description">
-              I design and ship backend systems, workflow automation, and database-driven applications with a focus on clean architecture, performance, and maintainability.
+              I engineer high-performance backend systems, robust RESTful APIs, and intelligent workflow automation with a relentless focus on clean architecture, database efficiency, and scalability.
             </p>
+
             <div class="hero-actions">
-              <a href="#projects" class="button button-primary">View Projects</a>
-              <a href="#" class="button button-secondary resume-trigger">Download Resume</a>
-              <a href="#contact" class="button button-secondary">Contact</a>
+              <a href="#projects" class="button button-primary glow-button">
+                <span>View Projects</span> <i class="fa-solid fa-arrow-right"></i>
+              </a>
+              <a href="#contact" class="button button-secondary">
+                <i class="fa-regular fa-paper-plane"></i> <span>Get in Touch</span>
+              </a>
+              <a href="#about" class="button button-ghost">
+                <span>Explore Background</span>
+              </a>
+            </div>
+
+            <div class="hero-metrics">
+              <div class="metric-item">
+                <span class="metric-val">BSc IT</span>
+                <span class="metric-label">Mumbai University</span>
+              </div>
+              <div class="metric-divider"></div>
+              <div class="metric-item">
+                <span class="metric-val">12+</span>
+                <span class="metric-label">Projects Built</span>
+              </div>
+              <div class="metric-divider"></div>
+              <div class="metric-item">
+                <span class="metric-val">Production</span>
+                <span class="metric-label">Flask & SQL Focus</span>
+              </div>
             </div>
           </div>
 
           <div class="hero-visual" aria-label="Profile and technology showcase">
-            <div class="profile-orbit">
+            <div class="profile-orbit tilt-card" id="profile-orbit">
+              <div class="orbit-glow"></div>
               <div class="orbit-ring orbit-ring-1"></div>
               <div class="orbit-ring orbit-ring-2"></div>
               <div class="orbit-ring orbit-ring-3"></div>
+              
               <div class="orbit-core">
-                <img src="assets/images/profile.png" alt="Ansari Mohammed Sameer">
+                <img src="assets/images/profile.png" alt="Ansari Mohammed Sameer - Backend Developer" class="profile-img">
               </div>
-              <span class="tech-badge tech-badge-python">Python</span>
-              <span class="tech-badge tech-badge-flask">Flask</span>
-              <span class="tech-badge tech-badge-postgres">PostgreSQL</span>
-              <span class="tech-badge tech-badge-react">React</span>
+
+              <!-- Orbiting Tech Badges -->
+              <span class="tech-badge tech-badge-python" title="Python">
+                <i class="fa-brands fa-python"></i> Python
+              </span>
+              <span class="tech-badge tech-badge-flask" title="Flask Backend">
+                <i class="fa-solid fa-flask"></i> Flask
+              </span>
+              <span class="tech-badge tech-badge-postgres" title="PostgreSQL">
+                <i class="fa-solid fa-database"></i> PostgreSQL
+              </span>
+              <span class="tech-badge tech-badge-api" title="REST APIs">
+                <i class="fa-solid fa-network-wired"></i> REST API
+              </span>
+              <span class="tech-badge tech-badge-docker" title="Docker">
+                <i class="fa-brands fa-docker"></i> Docker
+              </span>
             </div>
           </div>
         </div>
       </section>
 
+      <!-- Stats Section -->
       <section class="stats section section-tight" id="stats">
         <div class="container">
           <div class="section-heading">
-            <p class="eyebrow">Selected numbers</p>
-            <h2>Built to measure progress, not decoration.</h2>
+            <p class="eyebrow"><i class="fa-solid fa-chart-line"></i> Proven Traction</p>
+            <h2>Built on code, verified by metrics.</h2>
           </div>
           <div class="stats-grid">
-            <article class="stat-card">
-              <i class="fa-solid fa-code"></i>
+            <article class="stat-card tilt-card">
+              <div class="stat-icon-wrap"><i class="fa-solid fa-code"></i></div>
               <strong data-count="12">0</strong>
-              <span>Projects</span>
+              <span>Completed Projects</span>
+              <p class="stat-detail">Backend engines, automation kits & full-stack apps</p>
             </article>
-            <article class="stat-card">
-              <i class="fa-solid fa-certificate"></i>
+
+            <article class="stat-card tilt-card">
+              <div class="stat-icon-wrap"><i class="fa-solid fa-certificate"></i></div>
               <strong data-count="6">0</strong>
-              <span>Certificates</span>
+              <span>Certifications</span>
+              <p class="stat-detail">Cisco Python, Microsoft & Database standards</p>
             </article>
-            <article class="stat-card">
-              <i class="fa-solid fa-calendar-days"></i>
+
+            <article class="stat-card tilt-card">
+              <div class="stat-icon-wrap"><i class="fa-solid fa-calendar-check"></i></div>
               <strong data-count="4">0</strong>
-              <span>Years Learning</span>
+              <span>Years Hands-On</span>
+              <p class="stat-detail">Continuous coding, architecture & system design</p>
             </article>
-            <article class="stat-card">
-              <i class="fa-brands fa-github"></i>
-              <strong data-count="87">0</strong>
-              <span>GitHub Repositories</span>
+
+            <article class="stat-card tilt-card">
+              <div class="stat-icon-wrap"><i class="fa-brands fa-github"></i></div>
+              <strong data-count="10">0</strong>
+              <span>GitHub Repos</span>
+              <p class="stat-detail">Open source contributions & documented codebases</p>
             </article>
           </div>
         </div>
       </section>
 
+      <!-- About Section -->
       <section class="section" id="about">
         <div class="container">
           <div class="section-heading">
-            <p class="eyebrow">About</p>
-            <h2>A compact summary of my background and focus.</h2>
+            <p class="eyebrow"><i class="fa-solid fa-user-astronaut"></i> Background & Focus</p>
+            <h2>Architecting dependable software from the ground up.</h2>
           </div>
           <div class="feature-grid">
-            <article class="feature-card">
-              <i class="fa-solid fa-graduation-cap"></i>
-              <h3>Education</h3>
-              <p>BSc IT, Mumbai University, 2022 to 2025.</p>
+            <article class="feature-card tilt-card">
+              <div class="feature-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+              <h3>Formal Education</h3>
+              <p>Bachelor of Science in Information Technology (BSc IT) from Mumbai University (2022–2025), building a solid foundation in computer science, algorithms, and data structures.</p>
+              <div class="feature-tag">BSc IT • Mumbai University</div>
             </article>
-            <article class="feature-card">
-              <i class="fa-solid fa-briefcase"></i>
-              <h3>Background</h3>
-              <p>Hands-on work in Python, Flask, PostgreSQL, and backend tooling.</p>
+
+            <article class="feature-card tilt-card">
+              <div class="feature-icon"><i class="fa-solid fa-server"></i></div>
+              <h3>Backend Engineering</h3>
+              <p>Specialized in Python web frameworks (Flask, FastAPI), RESTful architectural patterns, asynchronous task handling, and secure authentication workflows.</p>
+              <div class="feature-tag">Python • Flask • REST APIs</div>
             </article>
-            <article class="feature-card">
-              <i class="fa-solid fa-heart"></i>
-              <h3>Interests</h3>
-              <p>Developer tooling, system design, automation, and open-source workflows.</p>
+
+            <article class="feature-card tilt-card">
+              <div class="feature-icon"><i class="fa-solid fa-database"></i></div>
+              <h3>Database Architecture</h3>
+              <p>Skilled in relational schema design, query optimization, indexing, and ORM integration across PostgreSQL, SQLite, and MySQL databases.</p>
+              <div class="feature-tag">PostgreSQL • SQLite • SQLAlchemy</div>
             </article>
-            <article class="feature-card">
-              <i class="fa-solid fa-bullseye"></i>
-              <h3>Goals</h3>
-              <p>Grow into a full-stack engineer shipping dependable, polished products.</p>
+
+            <article class="feature-card tilt-card">
+              <div class="feature-icon"><i class="fa-solid fa-gears"></i></div>
+              <h3>Automation & Tooling</h3>
+              <p>Passionate about writing Python scripts, CLI tools, and automated pipelines that eliminate repetitive manual workflows and save developer hours.</p>
+              <div class="feature-tag">Automation • CLI • DevOps</div>
             </article>
           </div>
         </div>
       </section>
 
+      <!-- Skills & Tech Stack Section -->
+      <section class="section" id="skills">
+        <div class="container">
+          <div class="section-heading">
+            <p class="eyebrow"><i class="fa-solid fa-layer-group"></i> Technical Arsenal</p>
+            <h2>Technologies & tools I leverage to build solutions.</h2>
+          </div>
+
+          <div class="skills-wrapper">
+            <!-- Backend Category -->
+            <div class="skill-category-card">
+              <div class="skill-cat-header">
+                <i class="fa-solid fa-code-branch"></i>
+                <h3>Backend & Core</h3>
+              </div>
+              <div class="skills-pill-group">
+                <div class="skill-pill"><i class="fa-brands fa-python"></i> Python (Advanced)</div>
+                <div class="skill-pill"><i class="fa-solid fa-flask"></i> Flask Framework</div>
+                <div class="skill-pill"><i class="fa-solid fa-cubes"></i> Django Basics</div>
+                <div class="skill-pill"><i class="fa-solid fa-bolt"></i> FastAPI</div>
+                <div class="skill-pill"><i class="fa-solid fa-network-wired"></i> RESTful APIs</div>
+                <div class="skill-pill"><i class="fa-solid fa-sitemap"></i> MVC Architecture</div>
+                <div class="skill-pill"><i class="fa-solid fa-shield-halved"></i> JWT & Auth</div>
+              </div>
+            </div>
+
+            <!-- Database Category -->
+            <div class="skill-category-card">
+              <div class="skill-cat-header">
+                <i class="fa-solid fa-database"></i>
+                <h3>Databases & ORM</h3>
+              </div>
+              <div class="skills-pill-group">
+                <div class="skill-pill"><i class="fa-solid fa-database"></i> PostgreSQL</div>
+                <div class="skill-pill"><i class="fa-solid fa-table"></i> SQLite</div>
+                <div class="skill-pill"><i class="fa-solid fa-server"></i> MySQL</div>
+                <div class="skill-pill"><i class="fa-solid fa-code"></i> SQLAlchemy ORM</div>
+                <div class="skill-pill"><i class="fa-solid fa-diagram-project"></i> Schema Design</div>
+                <div class="skill-pill"><i class="fa-solid fa-gauge-high"></i> Query Optimization</div>
+              </div>
+            </div>
+
+            <!-- DevOps & Tools -->
+            <div class="skill-category-card">
+              <div class="skill-cat-header">
+                <i class="fa-solid fa-screwdriver-wrench"></i>
+                <h3>DevOps, Tools & OS</h3>
+              </div>
+              <div class="skills-pill-group">
+                <div class="skill-pill"><i class="fa-brands fa-git-alt"></i> Git & GitHub</div>
+                <div class="skill-pill"><i class="fa-brands fa-docker"></i> Docker</div>
+                <div class="skill-pill"><i class="fa-brands fa-linux"></i> Linux / Bash</div>
+                <div class="skill-pill"><i class="fa-solid fa-terminal"></i> CLI Scripting</div>
+                <div class="skill-pill"><i class="fa-solid fa-paper-plane"></i> Postman API</div>
+                <div class="skill-pill"><i class="fa-solid fa-cloud-arrow-up"></i> Vercel / Render</div>
+              </div>
+            </div>
+
+            <!-- Web & Frontend -->
+            <div class="skill-category-card">
+              <div class="skill-cat-header">
+                <i class="fa-solid fa-laptop-code"></i>
+                <h3>Frontend & UI</h3>
+              </div>
+              <div class="skills-pill-group">
+                <div class="skill-pill"><i class="fa-brands fa-html5"></i> HTML5 Semantic</div>
+                <div class="skill-pill"><i class="fa-brands fa-css3-alt"></i> CSS3 & Modern CSS</div>
+                <div class="skill-pill"><i class="fa-brands fa-js"></i> JavaScript (ES6+)</div>
+                <div class="skill-pill"><i class="fa-brands fa-react"></i> React Basics</div>
+                <div class="skill-pill"><i class="fa-solid fa-mobile-screen"></i> Responsive UI</div>
+                <div class="skill-pill"><i class="fa-solid fa-wand-magic-sparkles"></i> GSAP Animations</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Projects Section -->
       <section class="section" id="projects">
         <div class="container">
           <div class="section-heading">
-            <p class="eyebrow">Projects</p>
-            <h2>The strongest work, presented with structure and clarity.</h2>
+            <p class="eyebrow"><i class="fa-solid fa-rocket"></i> Featured Work</p>
+            <h2>Proven software engineered with precision.</h2>
           </div>
+          
           <div class="project-stack">
-            <article class="project-card project-card-left">
+            <!-- Project 1: FuelMate -->
+            <article class="project-card project-card-left tilt-card">
               <div class="project-visual project-visual-fuelmate">
-                <span class="project-screenshot-label">FuelMate</span>
+                <div class="project-badge-tag"><i class="fa-solid fa-star"></i> Flagship Project</div>
+                <span class="project-screenshot-label">FuelMate Management</span>
               </div>
               <div class="project-content">
-                <p class="project-kicker">Featured project</p>
-                <h3>FuelMate</h3>
-                <p>Fuel management system with Flask, PostgreSQL, and analytics-focused workflows.</p>
+                <p class="project-kicker">Featured Backend Application</p>
+                <h3>FuelMate System</h3>
+                <p>
+                  A robust fuel management and tracking platform built with Flask and PostgreSQL. Features real-time consumption logging, analytics summaries, user authentication, and responsive dashboards.
+                </p>
                 <div class="tech-row">
-                  <span>Python</span><span>Flask</span><span>PostgreSQL</span>
+                  <span>Python</span>
+                  <span>Flask</span>
+                  <span>PostgreSQL</span>
+                  <span>SQLAlchemy</span>
+                  <span>Chart.js</span>
                 </div>
                 <div class="project-links">
-                  <a href="#"><i class="fa-brands fa-github"></i> GitHub</a>
-                  <a href="#"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo</a>
+                  <a target="_blank" rel="noopener noreferrer" href="https://github.com/sameer-ansari-dev/FuelMate" class="project-btn">
+                    <i class="fa-brands fa-github"></i> GitHub Code
+                  </a>
+                  <a target="_blank" rel="noopener noreferrer" href="https://fuel-mates-rouge.vercel.app/" class="project-btn project-btn-live">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo
+                  </a>
                 </div>
               </div>
             </article>
 
-            <article class="project-card project-card-right">
+            <!-- Project 2: Concierge Lifestyle -->
+            <article class="project-card project-card-right tilt-card">
               <div class="project-visual project-visual-concierge">
+                <div class="project-badge-tag"><i class="fa-solid fa-bell-concierge"></i> Web Platform</div>
                 <span class="project-screenshot-label">Concierge Lifestyle</span>
               </div>
               <div class="project-content">
-                <p class="project-kicker">Featured project</p>
+                <p class="project-kicker">Full-Stack Service System</p>
                 <h3>Concierge Lifestyle</h3>
-                <p>A scheduling and service platform with a Flask backend and automated user flows.</p>
+                <p>
+                  An intuitive lifestyle and concierge scheduling platform. Features automated appointment bookings, responsive client dashboards, dynamic service cataloging, and SQLite database persistence.
+                </p>
                 <div class="tech-row">
-                  <span>Flask</span><span>JavaScript</span><span>SQLite</span>
+                  <span>Flask</span>
+                  <span>Python</span>
+                  <span>JavaScript</span>
+                  <span>SQLite</span>
+                  <span>Responsive UI</span>
                 </div>
                 <div class="project-links">
-                  <a href="#"><i class="fa-brands fa-github"></i> GitHub</a>
-                  <a href="#"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo</a>
+                  <a target="_blank" rel="noopener noreferrer" href="https://github.com/sameer-ansari-dev/Concierge" class="project-btn">
+                    <i class="fa-brands fa-github"></i> GitHub Code
+                  </a>
+                  <a href="#contact" class="project-btn">
+                    <i class="fa-solid fa-envelope"></i> Request Demo
+                  </a>
                 </div>
               </div>
             </article>
 
-            <article class="project-card project-card-left">
+            <!-- Project 3: File Automation Kit -->
+            <article class="project-card project-card-left tilt-card">
               <div class="project-visual project-visual-automation">
+                <div class="project-badge-tag"><i class="fa-solid fa-terminal"></i> CLI Automation</div>
                 <span class="project-screenshot-label">File Automation Kit</span>
               </div>
               <div class="project-content">
-                <p class="project-kicker">Featured project</p>
+                <p class="project-kicker">Developer Tooling</p>
                 <h3>File Automation Kit</h3>
-                <p>Automation toolkit for organizing, renaming, and backing up files with Python scripts.</p>
+                <p>
+                  A high-efficiency Python automation toolkit for batch organizing, renaming, sanitizing, and backing up multi-terabyte directory structures with instant logging and dry-run safety modes.
+                </p>
                 <div class="tech-row">
-                  <span>Python</span><span>CLI</span><span>Automation</span>
+                  <span>Python</span>
+                  <span>CLI Tools</span>
+                  <span>OS / IO</span>
+                  <span>Automation</span>
+                  <span>Logging</span>
                 </div>
                 <div class="project-links">
-                  <a href="#"><i class="fa-brands fa-github"></i> GitHub</a>
-                  <a href="#"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo</a>
+                  <a target="_blank" rel="noopener noreferrer" href="https://github.com/sameer-ansari-dev/file-automation-kit" class="project-btn">
+                    <i class="fa-brands fa-github"></i> GitHub Code
+                  </a>
                 </div>
               </div>
             </article>
@@ -206,108 +417,286 @@
         </div>
       </section>
 
+      <!-- Certificates Section -->
       <section class="section" id="certificates">
         <div class="container">
           <div class="section-heading">
-            <p class="eyebrow">Certificates</p>
-            <h2>A cleaner gallery with modal preview support.</h2>
+            <p class="eyebrow"><i class="fa-solid fa-award"></i> Verified Credentials</p>
+            <h2>Recognized achievements & technical certifications.</h2>
           </div>
           <div class="certificate-grid">
-            <button class="certificate-card" data-title="Python Essentials 1" data-issuer="Cisco Networking Academy" data-year="2024" data-preview="assets/images/profile.png" type="button">
+            <!-- Cert 1 -->
+            <button class="certificate-card tilt-card" data-title="Python Essentials 1" data-issuer="Cisco Networking Academy" data-year="2024" data-preview="assets/images/profile.png" type="button" aria-label="View Python Essentials 1 Certificate">
               <div class="certificate-image certificate-image-placeholder">
-                <img src="assets/images/profile.png" alt="Python Essentials 1 preview">
+                <img src="assets/images/profile.png" alt="Python Essentials 1 Cisco Certificate Preview">
+                <div class="cert-overlay-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
               </div>
               <div class="certificate-meta">
                 <h3>Python Essentials 1</h3>
                 <p>Cisco Networking Academy • 2024</p>
-                <span>View certificate</span>
+                <span class="cert-badge"><i class="fa-solid fa-check-circle"></i> View Credential</span>
               </div>
             </button>
-            <button class="certificate-card" data-title="Microsoft Office" data-issuer="Microsoft" data-year="2023" data-preview="assets/images/MS-Office.png" type="button">
+
+            <!-- Cert 2 -->
+            <button class="certificate-card tilt-card" data-title="Microsoft Office Specialist" data-issuer="Microsoft Certification" data-year="2023" data-preview="assets/images/MS-Office.png" type="button" aria-label="View Microsoft Office Certificate">
               <div class="certificate-image">
-                <img src="assets/images/MS-Office.png" alt="Microsoft Office certificate">
+                <img src="assets/images/MS-Office.png" alt="Microsoft Office Certificate Preview">
+                <div class="cert-overlay-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
               </div>
               <div class="certificate-meta">
                 <h3>Microsoft Office</h3>
                 <p>Microsoft • 2023</p>
-                <span>View certificate</span>
+                <span class="cert-badge"><i class="fa-solid fa-check-circle"></i> View Credential</span>
               </div>
             </button>
-            <button class="certificate-card" data-title="Database Fundamentals" data-issuer="Self study" data-year="2024" data-preview="assets/images/profile.png" type="button">
+
+            <!-- Cert 3 -->
+            <button class="certificate-card tilt-card" data-title="Database Fundamentals & SQL" data-issuer="Specialized Coursework" data-year="2024" data-preview="assets/images/profile.png" type="button" aria-label="View Database Fundamentals Certificate">
               <div class="certificate-image certificate-image-placeholder">
-                <img src="assets/images/profile.png" alt="Database Fundamentals preview">
+                <img src="assets/images/profile.png" alt="Database Fundamentals Certificate Preview">
+                <div class="cert-overlay-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
               </div>
               <div class="certificate-meta">
                 <h3>Database Fundamentals</h3>
-                <p>Self study • 2024</p>
-                <span>View certificate</span>
+                <p>Relational DB & SQL • 2024</p>
+                <span class="cert-badge"><i class="fa-solid fa-check-circle"></i> View Credential</span>
               </div>
             </button>
           </div>
         </div>
       </section>
 
+      <!-- Journey Section -->
       <section class="section" id="journey">
         <div class="container">
           <div class="section-heading">
-            <p class="eyebrow">Journey</p>
-            <h2>Progression without clutter.</h2>
+            <p class="eyebrow"><i class="fa-solid fa-timeline"></i> Milestones</p>
+            <h2>Progression from foundational code to production systems.</h2>
           </div>
           <div class="timeline">
-            <article class="timeline-item"><span>2022</span><p>Started BSc IT.</p></article>
-            <article class="timeline-item"><span>2023</span><p>Built a stronger Python foundation.</p></article>
-            <article class="timeline-item"><span>2024</span><p>Started Flask-based backend projects.</p></article>
-            <article class="timeline-item"><span>2025</span><p>Shipped FuelMate and File Automation Kit.</p></article>
-            <article class="timeline-item"><span>2026</span><p>Building polished portfolio-grade products.</p></article>
+            <article class="timeline-item">
+              <div class="timeline-marker"></div>
+              <div class="timeline-year">2022</div>
+              <div class="timeline-content">
+                <h3>BSc IT Inception</h3>
+                <p>Commenced BSc in Information Technology at Mumbai University, diving deep into computer science fundamentals, programming logic, and mathematics.</p>
+              </div>
+            </article>
+
+            <article class="timeline-item">
+              <div class="timeline-marker"></div>
+              <div class="timeline-year">2023</div>
+              <div class="timeline-content">
+                <h3>Python Mastery & Automation</h3>
+                <p>Built extensive Python projects, mastered Object-Oriented Programming (OOP), Data Structures, and began authoring automated workflow scripts.</p>
+              </div>
+            </article>
+
+            <article class="timeline-item">
+              <div class="timeline-marker"></div>
+              <div class="timeline-year">2024</div>
+              <div class="timeline-content">
+                <h3>Backend Architecture & Databases</h3>
+                <p>Transitioned into professional web backends with Flask, mastering PostgreSQL relational design, SQLAlchemy ORMs, and secure RESTful APIs.</p>
+              </div>
+            </article>
+
+            <article class="timeline-item">
+              <div class="timeline-marker"></div>
+              <div class="timeline-year">2025</div>
+              <div class="timeline-content">
+                <h3>Shipped Flagship Deployments</h3>
+                <p>Engineered and shipped FuelMate fuel management system and the File Automation Kit with real-world testing, continuous iteration, and deployment.</p>
+              </div>
+            </article>
+
+            <article class="timeline-item">
+              <div class="timeline-marker"></div>
+              <div class="timeline-year">2026</div>
+              <div class="timeline-content">
+                <h3>Scalable Systems & Full-Stack Evolution</h3>
+                <p>Currently architecting scalable microservices, intelligent backend agents, and looking forward to making impactful contributions to high-growth teams.</p>
+              </div>
+            </article>
           </div>
         </div>
       </section>
 
+      <!-- Contact Section -->
       <section class="section" id="contact">
         <div class="container">
           <div class="section-heading">
-            <p class="eyebrow">Contact</p>
-            <h2>Ready for backend, automation, or product work.</h2>
+            <p class="eyebrow"><i class="fa-solid fa-headset"></i> Connect & Collaborate</p>
+            <h2>Ready to build something impactful together?</h2>
           </div>
           <div class="contact-grid">
-            <form class="contact-form">
-              <label>
-                Name
-                <input type="text" placeholder="Your name" required>
-              </label>
-              <label>
-                Email
-                <input type="email" placeholder="you@example.com" required>
-              </label>
-              <label>
-                Message
-                <textarea rows="5" placeholder="What are you building?"></textarea>
-              </label>
-              <button type="submit" class="button button-primary">Send message</button>
+            <!-- Contact Form -->
+            <form class="contact-form" id="contact-form" novalidate>
+              <div class="form-header">
+                <h3>Send a Direct Message</h3>
+                <p>Feel free to reach out for project inquiries, collaboration, or full-time opportunities.</p>
+              </div>
+
+              <div class="form-group">
+                <label for="contact-name">Full Name <span class="required">*</span></label>
+                <div class="input-wrap">
+                  <i class="fa-regular fa-user"></i>
+                  <input type="text" id="contact-name" name="name" placeholder="Ansari Mohammed" required autocomplete="name">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="contact-email">Email Address <span class="required">*</span></label>
+                <div class="input-wrap">
+                  <i class="fa-regular fa-envelope"></i>
+                  <input type="email" id="contact-email" name="email" placeholder="you@example.com" required autocomplete="email">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="contact-message">Message <span class="required">*</span></label>
+                <div class="input-wrap">
+                  <i class="fa-regular fa-comment-dots textarea-icon"></i>
+                  <textarea id="contact-message" name="message" rows="4" placeholder="Describe your project, question, or opportunity..." required></textarea>
+                </div>
+              </div>
+
+              <button type="submit" class="button button-primary form-submit-btn" id="form-submit-btn">
+                <span class="btn-text">Send Message</span>
+                <i class="fa-regular fa-paper-plane btn-icon"></i>
+                <span class="spinner" hidden></span>
+              </button>
             </form>
+
+            <!-- Contact Panel / Info -->
             <aside class="contact-panel">
-              <p><i class="fa-regular fa-envelope"></i> ansari@example.com</p>
-              <p><i class="fa-brands fa-github"></i> github.com/ansari</p>
-              <p><i class="fa-brands fa-linkedin-in"></i> linkedin.com/in/ansari</p>
-              <p><i class="fa-solid fa-location-dot"></i> Mumbai, India</p>
+              <div class="panel-header">
+                <h3>Contact Information</h3>
+                <p>Reach out directly via email, connect on LinkedIn, or inspect my repositories on GitHub.</p>
+              </div>
+
+              <div class="contact-card-list">
+                <!-- Email -->
+                <div class="contact-card">
+                  <div class="contact-card-icon"><i class="fa-regular fa-envelope"></i></div>
+                  <div class="contact-card-content">
+                    <span class="contact-card-label">Email</span>
+                    <a href="mailto:sameeransarispidy4444@gamil.com" class="contact-card-val" id="email-text">
+                      sameeransarispidy4444@gamil.com
+                    </a>
+                  </div>
+                  <button class="copy-btn" data-copy="sameeransarispidy4444@gamil.com" title="Copy Email" aria-label="Copy Email address" type="button">
+                    <i class="fa-regular fa-copy"></i>
+                  </button>
+                </div>
+
+                <!-- GitHub -->
+                <div class="contact-card">
+                  <div class="contact-card-icon"><i class="fa-brands fa-github"></i></div>
+                  <div class="contact-card-content">
+                    <span class="contact-card-label">GitHub</span>
+                    <a href="https://github.com/sameer-ansari-dev" target="_blank" rel="noopener noreferrer" class="contact-card-val">
+                      github.com/sameer-ansari-dev
+                    </a>
+                  </div>
+                  <a href="https://github.com/sameer-ansari-dev" target="_blank" rel="noopener noreferrer" class="external-link-btn" title="Open GitHub" aria-label="Open GitHub in new tab">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                  </a>
+                </div>
+
+                <!-- LinkedIn -->
+                <div class="contact-card">
+                  <div class="contact-card-icon"><i class="fa-brands fa-linkedin-in"></i></div>
+                  <div class="contact-card-content">
+                    <span class="contact-card-label">LinkedIn</span>
+                    <a href="https://www.linkedin.com/in/ansari-mohammed-sameer-naseem" target="_blank" rel="noopener noreferrer" class="contact-card-val">
+                      linkedin.com/in/ansari-mohammed-sameer-naseem
+                    </a>
+                  </div>
+                  <a href="https://www.linkedin.com/in/ansari-mohammed-sameer-naseem" target="_blank" rel="noopener noreferrer" class="external-link-btn" title="Open LinkedIn" aria-label="Open LinkedIn in new tab">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                  </a>
+                </div>
+
+                <!-- Address -->
+                <div class="contact-card">
+                  <div class="contact-card-icon"><i class="fa-solid fa-location-dot"></i></div>
+                  <div class="contact-card-content">
+                    <span class="contact-card-label">Location / Address</span>
+                    <p class="contact-card-val address-val" id="address-text">
+                      Gate no. 18, Navpada people welfare, Ghas bazar, Bandra East, Mumbai 400051
+                    </p>
+                  </div>
+                  <button class="copy-btn" data-copy="Gate no. 18, Navpada people welfare, Ghas bazar, Bandra East, Mumbai 400051" title="Copy Address" aria-label="Copy Address" type="button">
+                    <i class="fa-regular fa-copy"></i>
+                  </button>
+                </div>
+              </div>
+
+              <div class="quick-status-box">
+                <i class="fa-solid fa-circle-check text-green"></i>
+                <span>Open for backend internships, full-time engineering roles, and consulting projects.</span>
+              </div>
             </aside>
           </div>
         </div>
       </section>
     </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <div class="footer-brand">
+          <div class="brand">
+            <span class="brand-mark">AS</span>
+            <span class="brand-text">Ansari Mohammed Sameer</span>
+          </div>
+          <p class="footer-tagline">Backend Developer • Python & Flask Specialist • Mumbai, India</p>
+        </div>
+
+        <div class="footer-nav">
+          <a href="#hero">Home</a>
+          <a href="#about">About</a>
+          <a href="#skills">Skills</a>
+          <a href="#projects">Projects</a>
+          <a href="#certificates">Certificates</a>
+          <a href="#contact">Contact</a>
+        </div>
+
+        <div class="footer-social">
+          <a href="https://github.com/sameer-ansari-dev" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+          <a href="https://www.linkedin.com/in/ansari-mohammed-sameer-naseem" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="mailto:sameeransarispidy4444@gamil.com" aria-label="Email"><i class="fa-regular fa-envelope"></i></a>
+        </div>
+
+        <div class="footer-bottom">
+          <p>© 2026 Ansari Mohammed Sameer. All rights reserved.</p>
+          <a href="#hero" class="back-to-top-btn" id="back-to-top" aria-label="Back to top">
+            <span>Back to top</span> <i class="fa-solid fa-arrow-up"></i>
+          </a>
+        </div>
+      </div>
+    </footer>
   </div>
 
-  <div class="modal-overlay" hidden>
+  <!-- Certificate Modal Dialog -->
+  <div class="modal-overlay" id="cert-modal" hidden>
     <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="certificate-title">
-      <button class="modal-close" type="button" aria-label="Close preview"><i class="fa-solid fa-xmark"></i></button>
+      <button class="modal-close" id="modal-close-btn" type="button" aria-label="Close certificate preview">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
       <div class="modal-preview">
-        <img src="" alt="">
+        <img src="" alt="" id="modal-img">
       </div>
       <div class="modal-copy">
         <h3 id="certificate-title"></h3>
-        <p></p>
+        <p id="certificate-issuer"></p>
       </div>
     </div>
   </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toast-container" aria-live="polite" aria-atomic="true"></div>
 </body>
 </html>

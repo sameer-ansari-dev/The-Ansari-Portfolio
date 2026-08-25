@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard • Ansari Mohammed Sameer</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/admin.css">
+
+  <script src="/assets/js/admin.js" defer></script>
+</head>
+<body class="admin-body">
+  <div class="admin-shell">
+    <!-- Sidebar Navigation -->
+    <aside class="admin-sidebar" id="admin-sidebar">
+      <div class="sidebar-header">
+        <a href="/" target="_blank" class="sidebar-brand" title="View live portfolio">
+          <span class="brand-mark">AS</span>
+          <div class="brand-info">
+            <span class="brand-name">Sameer CMS</span>
+            <span class="brand-badge">Admin</span>
+          </div>
+        </a>
+      </div>
+
+      <nav class="sidebar-nav">
+        <button class="nav-item is-active" data-tab="tab-overview">
+          <i class="fa-solid fa-gauge-high"></i> <span>Overview</span>
+        </button>
+        <button class="nav-item" data-tab="tab-profile">
+          <i class="fa-regular fa-user"></i> <span>Profile & Bio</span>
+        </button>
+        <button class="nav-item" data-tab="tab-projects">
+          <i class="fa-solid fa-laptop-code"></i> <span>Projects</span>
+          <span class="pill-count" id="badge-projects-count">{{ projects|length }}</span>
+        </button>
+        <button class="nav-item" data-tab="tab-skills">
+          <i class="fa-solid fa-layer-group"></i> <span>Skills Matrix</span>
+          <span class="pill-count" id="badge-skills-count">{{ skills|length }}</span>
+        </button>
+        <button class="nav-item" data-tab="tab-certificates">
+          <i class="fa-solid fa-award"></i> <span>Certificates</span>
+          <span class="pill-count" id="badge-certs-count">{{ certificates|length }}</span>
+        </button>
+        <button class="nav-item" data-tab="tab-timeline">
+          <i class="fa-solid fa-timeline"></i> <span>Journey</span>
+          <span class="pill-count" id="badge-timeline-count">{{ timeline|length }}</span>
+        </button>
+        <button class="nav-item" data-tab="tab-stats">
+          <i class="fa-solid fa-chart-simple"></i> <span>Stats & About</span>
+        </button>
+        <button class="nav-item" data-tab="tab-messages">
+          <i class="fa-regular fa-envelope"></i> <span>Inquiries</span>
+          <span class="pill-count pill-highlight" id="badge-messages-count">{{ messages|length }}</span>
+        </button>
+        <button class="nav-item" data-tab="tab-security">
+          <i class="fa-solid fa-shield-halved"></i> <span>Security</span>
+        </button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <a href="/" target="_blank" class="live-preview-btn">
+          <i class="fa-solid fa-arrow-up-right-from-square"></i> <span>Live Portfolio</span>
+        </a>
+        <a href="/admin/logout" class="logout-btn" title="Sign Out">
+          <i class="fa-solid fa-arrow-right-from-bracket"></i> <span>Sign Out</span>
+        </a>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="admin-main">
+      <!-- Admin Topbar -->
+      <header class="admin-topbar">
+        <div class="topbar-left">
+          <button class="sidebar-toggle" id="sidebar-toggle" aria-label="Toggle sidebar menu">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+          <h2 class="topbar-title" id="page-title">Dashboard Overview</h2>
+        </div>
+        <div class="topbar-right">
+          <span class="logged-as"><i class="fa-solid fa-circle text-green"></i> Signed in as <strong>sameer</strong></span>
+          <a href="/" target="_blank" class="button button-secondary button-sm">
+            <i class="fa-solid fa-globe"></i> <span>Preview Site</span>
+          </a>
+        </div>
+      </header>
+
+      <div class="admin-content-area">
+        <!-- ================================================================
+             TAB 1: Overview
+             ================================================================ -->
+        <section class="admin-tab-pane is-active" id="tab-overview">
+          <div class="overview-grid">
+            <div class="dash-stat-card">
+              <div class="dash-stat-icon icon-blue"><i class="fa-solid fa-laptop-code"></i></div>
+              <div class="dash-stat-content">
+                <span class="dash-stat-label">Total Projects</span>
+                <strong class="dash-stat-val" id="ov-proj-count">{{ projects|length }}</strong>
+              </div>
+            </div>
+
+            <div class="dash-stat-card">
+              <div class="dash-stat-icon icon-yellow"><i class="fa-solid fa-layer-group"></i></div>
+              <div class="dash-stat-content">
+                <span class="dash-stat-label">Skills Listed</span>
+                <strong class="dash-stat-val" id="ov-skills-count">{{ skills|length }}</strong>
+              </div>
+            </div>
+
+            <div class="dash-stat-card">
+              <div class="dash-stat-icon icon-green"><i class="fa-solid fa-award"></i></div>
+              <div class="dash-stat-content">
+                <span class="dash-stat-label">Certificates</span>
+                <strong class="dash-stat-val" id="ov-certs-count">{{ certificates|length }}</strong>
+              </div>
+            </div>
+
+            <div class="dash-stat-card">
+              <div class="dash-stat-icon icon-purple"><i class="fa-regular fa-envelope"></i></div>
+              <div class="dash-stat-content">
+                <span class="dash-stat-label">Visitor Inquiries</span>
+                <strong class="dash-stat-val" id="ov-msg-count">{{ messages|length }}</strong>
+              </div>
+            </div>
+          </div>
+
+          <div class="dash-split-grid">
+            <!-- Quick Actions Panel -->
+            <div class="dash-panel">
+              <div class="dash-panel-header">
+                <h3><i class="fa-solid fa-bolt text-yellow"></i> Quick Management</h3>
+              </div>
+              <div class="quick-btn-grid">
+                <button class="quick-btn" onclick="switchTab('tab-projects'); openProjectModal();">
+                  <i class="fa-solid fa-plus"></i>
+                  <span>Add New Project</span>
+                </button>
+                <button class="quick-btn" onclick="switchTab('tab-skills'); openSkillModal();">
+                  <i class="fa-solid fa-plus"></i>
+                  <span>Add New Skill</span>
+                </button>
+                <button class="quick-btn" onclick="switchTab('tab-certificates'); openCertModal();">
+                  <i class="fa-solid fa-plus"></i>
+                  <span>Add Certificate</span>
+                </button>
+                <button class="quick-btn" onclick="switchTab('tab-profile');">
+                  <i class="fa-regular fa-pen-to-square"></i>
+                  <span>Edit Profile & Roles</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Recent Inquiries Panel -->
+            <div class="dash-panel">
+              <div class="dash-panel-header">
+                <h3><i class="fa-regular fa-envelope text-blue"></i> Recent Contact Inquiries</h3>
+                <button class="button button-ghost button-sm" onclick="switchTab('tab-messages');">View All</button>
+              </div>
+              <div class="recent-messages-list">
+                {% if messages %}
+                  {% for msg in messages[:3] %}
+                  <div class="msg-preview-item">
+                    <div class="msg-meta">
+                      <strong>{{ msg.name }}</strong>
+                      <span class="msg-email">{{ msg.email }}</span>
+                      <span class="msg-time">{{ msg.timestamp.split('T')[0] if 'T' in msg.timestamp else msg.timestamp }}</span>
+                    </div>
+                    <p class="msg-body">{{ msg.message }}</p>
+                  </div>
+                  {% endfor %}
+                {% else %}
+                  <div class="empty-state">
+                    <i class="fa-regular fa-folder-open"></i>
+                    <p>No messages received yet. Visitor submissions will appear here!</p>
+                  </div>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================================================================
+             TAB 2: Profile & Bio
+             ================================================================ -->
+        <section class="admin-tab-pane" id="tab-profile">
+          <div class="dash-panel">
+            <div class="dash-panel-header">
+              <h3><i class="fa-regular fa-user text-blue"></i> Personal Profile & Hero Configuration</h3>
+              <p>Update your display name, animated typing roles, bio description, and social contact channels.</p>
+            </div>
+
+            <form id="form-profile" class="admin-form">
+              <div class="form-grid-2">
+                <div class="form-group">
+                  <label for="prof-name">Full Name</label>
+                  <input type="text" id="prof-name" name="name" value="{{ profile.name }}" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="prof-eyebrow">Eyebrow Headline</label>
+                  <input type="text" id="prof-eyebrow" name="eyebrow" value="{{ profile.eyebrow }}" required>
+                </div>
+              </div>
+
+              <div class="form-grid-2">
+                <div class="form-group">
+                  <label for="prof-status">Status Banner Text</label>
+                  <input type="text" id="prof-status" name="status_text" value="{{ profile.status_text }}">
+                </div>
+
+                <div class="form-group">
+                  <label for="prof-education">Education Summary</label>
+                  <input type="text" id="prof-education" name="education" value="{{ profile.education }}">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="prof-roles">
+                  Dynamic Typing Roles (One role per line)
+                </label>
+                <textarea id="prof-roles" name="role_typing" rows="4" placeholder="Python Backend Engineer&#10;Flask Specialist&#10;PostgreSQL Architect">{{ profile.role_typing|join('\n') }}</textarea>
+                <span class="form-hint">These phrases cycle automatically with typing animation in the hero section.</span>
+              </div>
+
+              <div class="form-group">
+                <label for="prof-desc">Hero Bio & Overview</label>
+                <textarea id="prof-desc" name="description" rows="3" required>{{ profile.description }}</textarea>
+              </div>
+
+              <div class="form-divider"><span>Contact & Social Links</span></div>
+
+              <div class="form-grid-2">
+                <div class="form-group">
+                  <label for="prof-email">Contact Email</label>
+                  <input type="email" id="prof-email" name="email" value="{{ profile.email }}" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="prof-github">GitHub Profile URL</label>
+                  <input type="url" id="prof-github" name="github" value="{{ profile.github }}" required>
+                </div>
+              </div>
+
+              <div class="form-grid-2">
+                <div class="form-group">
+                  <label for="prof-linkedin">LinkedIn Profile URL</label>
+                  <input type="url" id="prof-linkedin" name="linkedin" value="{{ profile.linkedin }}" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="prof-address">Location / Address</label>
+                  <input type="text" id="prof-address" name="address" value="{{ profile.address }}" required>
+                </div>
+              </div>
+
+              <div class="form-actions">
+                <button type="submit" class="button button-primary">
+                  <i class="fa-solid fa-floppy-disk"></i> <span>Save Profile Changes</span>
+                </button>
+              </div>
+            </form>
+          </div>
+        </section>
+
+        <!-- ================================================================
+             TAB 3: Projects
+             ================================================================ -->
+        <section class="admin-tab-pane" id="tab-projects">
+          <div class="dash-panel">
+            <div class="dash-panel-header space-between">
+              <div>
+                <h3><i class="fa-solid fa-laptop-code text-blue"></i> Featured Projects Manager</h3>
+                <p>Create, update, or remove projects shown on your portfolio.</p>
+              </div>
+              <button class="button button-primary" onclick="openProjectModal()">
+                <i class="fa-solid fa-plus"></i> <span>Add New Project</span>
+              </button>
+            </div>
+
+            <div class="items-table-container">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>Title & Kicker</th>
+                    <th>Badge</th>
+                    <th>Tech Stack</th>
+                    <th>Links</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="projects-table-body">
+                  {% for p in projects %}
+                  <tr data-id="{{ p.id }}">
+                    <td>
+                      <strong>{{ p.title }}</strong>
+                      <span class="sub-text">{{ p.kicker }}</span>
+                    </td>
+                    <td><span class="table-badge">{{ p.badge or 'Standard' }}</span></td>
+                    <td>
+                      <div class="tag-list">
+                        {% for t in p.tech_tags %}
+                        <span class="mini-tag">{{ t }}</span>
+                        {% endfor %}
+                      </div>
+                    </td>
+                    <td>
+                      {% if p.github_url %}<a href="{{ p.github_url }}" target="_blank" class="table-link" title="GitHub"><i class="fa-brands fa-github"></i></a>{% endif %}
+                      {% if p.demo_url %}<a href="{{ p.demo_url }}" target="_blank" class="table-link" title="Live Demo"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>{% endif %}
+                    </td>
+                    <td>
+                      <div class="action-btn-group">
+                        <button class="btn-action edit" onclick='editProject({{ p|tojson }})' title="Edit Project">
+                          <i class="fa-regular fa-pen-to-square"></i>
+                        </button>
+                        <button class="btn-action delete" onclick="deleteProject('{{ p.id }}', '{{ p.title }}')" title="Delete Project">
+                          <i class="fa-regular fa-trash-can"></i>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================================================================
+             TAB 4: Skills Matrix
+             ================================================================ -->
+        <section class="admin-tab-pane" id="tab-skills">
+          <div class="dash-panel">
+            <div class="dash-panel-header space-between">
+              <div>
+                <h3><i class="fa-solid fa-layer-group text-yellow"></i> Technical Skills Matrix</h3>
+                <p>Manage your categorized technical capabilities & icon badges.</p>
+              </div>
+              <button class="button button-primary" onclick="openSkillModal()">
+                <i class="fa-solid fa-plus"></i> <span>Add New Skill</span>
+              </button>
+            </div>
+
+            <div class="skills-admin-grid">
+              <!-- Backend -->
+              <div class="skill-category-box">
+                <div class="cat-box-header">
+                  <i class="fa-solid fa-code-branch text-blue"></i>
+                  <h4>Backend & Core</h4>
+                </div>
+                <div class="skill-chips-list" id="skills-list-backend">
+                  {% for s in skills if s.category == 'backend' %}
+                  <div class="skill-chip-item">
+                    <i class="{{ s.icon }}"></i>
+                    <span>{{ s.name }}</span>
+                    <button type="button" class="del-chip" onclick="deleteSkill('{{ s.id }}', '{{ s.name }}')">
+                      <i class="fa-solid fa-xmark"></i>
+                    </button>
+                  </div>
+                  {% endfor %}
+                </div>
+              </div>
+
+              <!-- Database -->
+              <div class="skill-category-box">
+                <div class="cat-box-header">
+                  <i class="fa-solid fa-database text-yellow"></i>
+                  <h4>Databases & ORM</h4>
+                </div>
+                <div class="skill-chips-list" id="skills-list-database">
+                  {% for s in skills if s.category == 'database' %}
+                  <div class="skill-chip-item">
+                    <i class="{{ s.icon }}"></i>
+                    <span>{{ s.name }}</span>
+                    <button type="button" class="del-chip" onclick="deleteSkill('{{ s.id }}', '{{ s.name }}')">
+                      <i class="fa-solid fa-xmark"></i>
+                    </button>
+                  </div>
+                  {% endfor %}
+                </div>
+              </div>
+
+              <!-- DevOps -->
+              <div class="skill-category-box">
+                <div class="cat-box-header">
+                  <i class="fa-solid fa-screwdriver-wrench text-green"></i>
+                  <h4>DevOps, Tools & OS</h4>
+                </div>
+                <div class="skill-chips-list" id="skills-list-devops">
+                  {% for s in skills if s.category == 'devops' %}
+                  <div class="skill-chip-item">
+                    <i class="{{ s.icon }}"></i>
+                    <span>{{ s.name }}</span>
+                    <button type="button" class="del-chip" onclick="deleteSkill('{{ s.id }}', '{{ s.name }}')">
+                      <i class="fa-solid fa-xmark"></i>
+                    </button>
+                  </div>
+                  {% endfor %}
+                </div>
+              </div>
+
+              <!-- Frontend -->
+              <div class="skill-category-box">
+                <div class="cat-box-header">
+                  <i class="fa-solid fa-laptop-code text-cyan"></i>
+                  <h4>Frontend & UI</h4>
+                </div>
+                <div class="skill-chips-list" id="skills-list-frontend">
+                  {% for s in skills if s.category == 'frontend' %}
+                  <div class="skill-chip-item">
+                    <i class="{{ s.icon }}"></i>
+                    <span>{{ s.name }}</span>
+                    <button type="button" class="del-chip" onclick="deleteSkill('{{ s.id }}', '{{ s.name }}')">
+                      <i class="fa-solid fa-xmark"></i>
+                    </button>
+                  </div>
+                  {% endfor %}
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================================================================
+             TAB 5: Certificates
+             ================================================================ -->
+        <section class="admin-tab-pane" id="tab-certificates">
+          <div class="dash-panel">
+            <div class="dash-panel-header space-between">
+              <div>
+                <h3><i class="fa-solid fa-award text-green"></i> Certifications & Credentials</h3>
+                <p>Add, edit, or remove technical certifications displayed on the gallery.</p>
+              </div>
+              <button class="button button-primary" onclick="openCertModal()">
+                <i class="fa-solid fa-plus"></i> <span>Add Certificate</span>
+              </button>
+            </div>
+
+            <div class="certs-admin-grid">
+              {% for c in certificates %}
+              <div class="cert-admin-card" data-id="{{ c.id }}">
+                <div class="cert-admin-img">
+                  <img src="/{{ c.preview }}" alt="{{ c.title }}">
+                </div>
+                <div class="cert-admin-info">
+                  <h4>{{ c.title }}</h4>
+                  <p>{{ c.issuer }} • {{ c.year }}</p>
+                </div>
+                <div class="cert-admin-actions">
+                  <button class="button button-secondary button-sm" onclick='editCert({{ c|tojson }})'>
+                    <i class="fa-regular fa-pen-to-square"></i> Edit
+                  </button>
+                  <button class="button button-danger button-sm" onclick="deleteCert('{{ c.id }}', '{{ c.title }}')">
+                    <i class="fa-regular fa-trash-can"></i> Delete
+                  </button>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+        </section>
+
+        <!-- ================================================================
+             TAB 6: Journey / Timeline
+             ================================================================ -->
+        <section class="admin-tab-pane" id="tab-timeline">
+          <div class="dash-panel">
+            <div class="dash-panel-header space-between">
+              <div>
+                <h3><i class="fa-solid fa-timeline text-yellow"></i> Journey Milestones</h3>
+                <p>Manage career progression milestones and timeline items.</p>
+              </div>
+              <button class="button button-primary" onclick="openTimelineModal()">
+                <i class="fa-solid fa-plus"></i> <span>Add Milestone</span>
+              </button>
+            </div>
+
+            <div class="timeline-admin-list">
+              {% for t in timeline %}
+              <div class="timeline-admin-item" data-id="{{ t.id }}">
+                <div class="tl-year-badge">{{ t.year }}</div>
+                <div class="tl-content">
+                  <h4>{{ t.title }}</h4>
+                  <p>{{ t.description }}</p>
+                </div>
+                <div class="action-btn-group">
+                  <button class="btn-action edit" onclick='editTimeline({{ t|tojson }})' title="Edit Milestone">
+                    <i class="fa-regular fa-pen-to-square"></i>
+                  </button>
+                  <button class="btn-action delete" onclick="deleteTimeline('{{ t.id }}')" title="Delete Milestone">
+                    <i class="fa-regular fa-trash-can"></i>
+                  </button>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+        </section>
+
+        <!-- ================================================================
+             TAB 7: Stats & About
+             ================================================================ -->
+        <section class="admin-tab-pane" id="tab-stats">
+          <div class="dash-panel">
+            <div class="dash-panel-header">
+              <h3><i class="fa-solid fa-chart-simple text-blue"></i> Key Metrics & Statistics</h3>
+              <p>Configure the 4 counter numbers displayed in the live stats section.</p>
+            </div>
+
+            <form id="form-stats" class="admin-form">
+              <div class="stats-edit-grid">
+                {% for s in stats %}
+                <div class="stat-edit-box">
+                  <span class="box-tag">Counter #{{ loop.index }}</span>
+                  <div class="form-group">
+                    <label>Count Number</label>
+                    <input type="number" name="stat_count_{{ loop.index0 }}" value="{{ s.count }}" required min="0">
+                  </div>
+                  <div class="form-group">
+                    <label>Label</label>
+                    <input type="text" name="stat_label_{{ loop.index0 }}" value="{{ s.label }}" required>
+                  </div>
+                  <div class="form-group">
+                    <label>Detail Description</label>
+                    <input type="text" name="stat_detail_{{ loop.index0 }}" value="{{ s.detail }}" required>
+                  </div>
+                  <div class="form-group">
+                    <label>Icon Class</label>
+                    <input type="text" name="stat_icon_{{ loop.index0 }}" value="{{ s.icon }}" required>
+                  </div>
+                </div>
+                {% endfor %}
+              </div>
+
+              <div class="form-actions">
+                <button type="submit" class="button button-primary">
+                  <i class="fa-solid fa-floppy-disk"></i> <span>Save Stats Numbers</span>
+                </button>
+              </div>
+            </form>
+          </div>
+        </section>
+
+        <!-- ================================================================
+             TAB 8: Messages Inbox
+             ================================================================ -->
+        <section class="admin-tab-pane" id="tab-messages">
+          <div class="dash-panel">
+            <div class="dash-panel-header">
+              <h3><i class="fa-regular fa-envelope text-blue"></i> Visitor Inquiries & Messages</h3>
+              <p>Review contact messages submitted by clients, recruiters, and collaborators.</p>
+            </div>
+
+            <div class="messages-table-container">
+              {% if messages %}
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>Sender</th>
+                    <th>Email</th>
+                    <th>Message</th>
+                    <th>Date & Time</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="messages-table-body">
+                  {% for m in messages|reverse %}
+                  <tr data-id="{{ m.timestamp }}">
+                    <td><strong>{{ m.name }}</strong></td>
+                    <td><a href="mailto:{{ m.email }}" class="table-link">{{ m.email }}</a></td>
+                    <td class="msg-content-cell">{{ m.message }}</td>
+                    <td class="msg-date-cell">{{ m.timestamp }}</td>
+                    <td>
+                      <button class="btn-action delete" onclick="deleteMessage('{{ m.timestamp }}')" title="Delete Message">
+                        <i class="fa-regular fa-trash-can"></i>
+                      </button>
+                    </td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+              {% else %}
+              <div class="empty-state">
+                <i class="fa-regular fa-envelope-open"></i>
+                <p>No messages received yet. Inquiries submitted via your contact form will be stored here.</p>
+              </div>
+              {% endif %}
+            </div>
+          </div>
+        </section>
+
+        <!-- ================================================================
+             TAB 9: Security
+             ================================================================ -->
+        <section class="admin-tab-pane" id="tab-security">
+          <div class="dash-panel">
+            <div class="dash-panel-header">
+              <h3><i class="fa-solid fa-shield-halved text-yellow"></i> Account Security & Secret Password</h3>
+              <p>Update your secret admin credentials.</p>
+            </div>
+
+            <form id="form-password" class="admin-form max-w-500">
+              <div class="form-group">
+                <label for="current-pwd">Current Password</label>
+                <input type="password" id="current-pwd" name="current_password" required placeholder="Enter current password">
+              </div>
+
+              <div class="form-group">
+                <label for="new-pwd">New Secret Password</label>
+                <input type="password" id="new-pwd" name="new_password" required placeholder="Enter new strong password" minlength="6">
+              </div>
+
+              <div class="form-group">
+                <label for="confirm-pwd">Confirm New Password</label>
+                <input type="password" id="confirm-pwd" name="confirm_password" required placeholder="Re-enter new password" minlength="6">
+              </div>
+
+              <div class="form-actions">
+                <button type="submit" class="button button-primary">
+                  <i class="fa-solid fa-key"></i> <span>Update Secret Password</span>
+                </button>
+              </div>
+            </form>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <!-- ======================================================================
+       MODAL: Project Add / Edit
+       ====================================================================== -->
+  <div class="modal-overlay" id="modal-project" hidden>
+    <div class="modal-dialog admin-modal-dialog">
+      <button class="modal-close" type="button" onclick="closeModal('modal-project')">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <div class="modal-header">
+        <h3 id="modal-project-title">Add New Project</h3>
+      </div>
+      <form id="form-project-modal" class="admin-form">
+        <input type="hidden" id="proj-id" name="id">
+
+        <div class="form-grid-2">
+          <div class="form-group">
+            <label for="proj-title">Project Title</label>
+            <input type="text" id="proj-title" name="title" required placeholder="e.g. FuelMate System">
+          </div>
+          <div class="form-group">
+            <label for="proj-kicker">Kicker Label</label>
+            <input type="text" id="proj-kicker" name="kicker" placeholder="e.g. Featured Backend Application">
+          </div>
+        </div>
+
+        <div class="form-grid-2">
+          <div class="form-group">
+            <label for="proj-badge">Badge Text (Optional)</label>
+            <input type="text" id="proj-badge" name="badge" placeholder="e.g. Flagship Project">
+          </div>
+          <div class="form-group">
+            <label for="proj-tags">Tech Stack (Comma-separated)</label>
+            <input type="text" id="proj-tags" name="tech_tags" required placeholder="Python, Flask, PostgreSQL, Docker">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="proj-desc">Project Description</label>
+          <textarea id="proj-desc" name="description" rows="3" required placeholder="Describe what the system does..."></textarea>
+        </div>
+
+        <div class="form-grid-2">
+          <div class="form-group">
+            <label for="proj-github">GitHub Repository URL</label>
+            <input type="url" id="proj-github" name="github_url" placeholder="https://github.com/sameer-ansari-dev/...">
+          </div>
+          <div class="form-group">
+            <label for="proj-demo">Live Demo URL (Optional)</label>
+            <input type="url" id="proj-demo" name="demo_url" placeholder="https://fuel-mates-rouge.vercel.app/">
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button type="button" class="button button-ghost" onclick="closeModal('modal-project')">Cancel</button>
+          <button type="submit" class="button button-primary">Save Project</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ======================================================================
+       MODAL: Skill Add
+       ====================================================================== -->
+  <div class="modal-overlay" id="modal-skill" hidden>
+    <div class="modal-dialog admin-modal-dialog">
+      <button class="modal-close" type="button" onclick="closeModal('modal-skill')">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <div class="modal-header">
+        <h3>Add New Skill</h3>
+      </div>
+      <form id="form-skill-modal" class="admin-form">
+        <div class="form-group">
+          <label for="skill-cat">Category</label>
+          <select id="skill-cat" name="category" required class="admin-select">
+            <option value="backend">Backend & Core</option>
+            <option value="database">Databases & ORM</option>
+            <option value="devops">DevOps, Tools & OS</option>
+            <option value="frontend">Frontend & UI</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="skill-name">Skill Name</label>
+          <input type="text" id="skill-name" name="name" required placeholder="e.g. Redis / Celery">
+        </div>
+
+        <div class="form-group">
+          <label for="skill-icon">FontAwesome Icon Class</label>
+          <input type="text" id="skill-icon" name="icon" value="fa-solid fa-bolt" placeholder="e.g. fa-brands fa-python">
+        </div>
+
+        <div class="form-actions">
+          <button type="button" class="button button-ghost" onclick="closeModal('modal-skill')">Cancel</button>
+          <button type="submit" class="button button-primary">Add Skill</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ======================================================================
+       MODAL: Certificate Add / Edit
+       ====================================================================== -->
+  <div class="modal-overlay" id="modal-cert" hidden>
+    <div class="modal-dialog admin-modal-dialog">
+      <button class="modal-close" type="button" onclick="closeModal('modal-cert')">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <div class="modal-header">
+        <h3 id="modal-cert-title">Add Certificate</h3>
+      </div>
+      <form id="form-cert-modal" class="admin-form">
+        <input type="hidden" id="cert-id" name="id">
+
+        <div class="form-group">
+          <label for="cert-title-input">Certificate Title</label>
+          <input type="text" id="cert-title-input" name="title" required placeholder="e.g. Cisco Python Essentials">
+        </div>
+
+        <div class="form-grid-2">
+          <div class="form-group">
+            <label for="cert-issuer-input">Issuer Organization</label>
+            <input type="text" id="cert-issuer-input" name="issuer" required placeholder="e.g. Cisco / Microsoft">
+          </div>
+          <div class="form-group">
+            <label for="cert-year-input">Year</label>
+            <input type="text" id="cert-year-input" name="year" required placeholder="e.g. 2024">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="cert-preview-input">Image Preview Path / URL</label>
+          <input type="text" id="cert-preview-input" name="preview" value="assets/images/MS-Office.png" required>
+        </div>
+
+        <div class="form-actions">
+          <button type="button" class="button button-ghost" onclick="closeModal('modal-cert')">Cancel</button>
+          <button type="submit" class="button button-primary">Save Certificate</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ======================================================================
+       MODAL: Timeline Add / Edit
+       ====================================================================== -->
+  <div class="modal-overlay" id="modal-timeline" hidden>
+    <div class="modal-dialog admin-modal-dialog">
+      <button class="modal-close" type="button" onclick="closeModal('modal-timeline')">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <div class="modal-header">
+        <h3 id="modal-timeline-title">Add Milestone</h3>
+      </div>
+      <form id="form-timeline-modal" class="admin-form">
+        <input type="hidden" id="tl-id" name="id">
+
+        <div class="form-grid-2">
+          <div class="form-group">
+            <label for="tl-year">Year</label>
+            <input type="text" id="tl-year" name="year" required placeholder="e.g. 2026">
+          </div>
+          <div class="form-group">
+            <label for="tl-title">Milestone Title</label>
+            <input type="text" id="tl-title" name="title" required placeholder="e.g. Shipped Production API">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="tl-desc">Description</label>
+          <textarea id="tl-desc" name="description" rows="3" required placeholder="Describe what was achieved..."></textarea>
+        </div>
+
+        <div class="form-actions">
+          <button type="button" class="button button-ghost" onclick="closeModal('modal-timeline')">Cancel</button>
+          <button type="submit" class="button button-primary">Save Milestone</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toast-container" aria-live="polite"></div>
+</body>
+</html>

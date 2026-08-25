@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="{{ profile.name }} - Backend Developer specializing in Python, Flask, PostgreSQL, REST APIs, and automation systems.">
+  <meta name="author" content="{{ profile.name }}">
+  <meta name="theme-color" content="#0D1117">
+  <title>{{ profile.name }} | Backend Developer & Python Specialist</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/animations.css">
+  <link rel="stylesheet" href="/assets/css/responsive.css">
+
+  <!-- GSAP & Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
+  <script src="/assets/js/main.js" defer></script>
+</head>
+<body>
+  <!-- Ambient Particle Constellation Canvas -->
+  <canvas id="particle-canvas" class="particle-canvas" aria-hidden="true"></canvas>
+
+  <!-- Scroll Progress Indicator -->
+  <div class="scroll-progress-bar" id="scroll-progress" aria-hidden="true"></div>
+
+  <div class="page-shell">
+    <!-- Header -->
+    <header class="site-header" id="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="#hero" aria-label="Go to top">
+          <span class="brand-mark">AS</span>
+          <span class="brand-text">{{ profile.name }}</span>
+        </a>
+
+        <button class="nav-toggle" type="button" aria-label="Toggle navigation menu" aria-expanded="false" id="nav-toggle">
+          <span></span><span></span><span></span>
+        </button>
+
+        <nav class="site-nav" id="site-nav" aria-label="Primary navigation">
+          <a href="#hero" class="nav-link is-active">Home</a>
+          <a href="#stats" class="nav-link">Stats</a>
+          <a href="#about" class="nav-link">About</a>
+          <a href="#skills" class="nav-link">Skills</a>
+          <a href="#projects" class="nav-link">Projects</a>
+          <a href="#certificates" class="nav-link">Certificates</a>
+          <a href="#journey" class="nav-link">Journey</a>
+          <a href="#contact" class="nav-link">Contact</a>
+        </nav>
+
+        <div class="header-actions">
+          <div class="social-links" aria-label="Social profiles">
+            {% if profile.github %}
+            <a href="{{ profile.github }}" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile" title="GitHub">
+              <i class="fa-brands fa-github"></i>
+            </a>
+            {% endif %}
+            {% if profile.linkedin %}
+            <a href="{{ profile.linkedin }}" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile" title="LinkedIn">
+              <i class="fa-brands fa-linkedin-in"></i>
+            </a>
+            {% endif %}
+            {% if profile.email %}
+            <a href="mailto:{{ profile.email }}" aria-label="Send Email" title="Email">
+              <i class="fa-regular fa-envelope"></i>
+            </a>
+            {% endif %}
+          </div>
+          <a href="#contact" class="resume-button resume-trigger">
+            <i class="fa-solid fa-file-arrow-down"></i> Resume
+          </a>
+        </div>
+      </div>
+      <div class="nav-backdrop" id="nav-backdrop" hidden></div>
+    </header>
+
+    <main>
+      <!-- Hero Section -->
+      <section class="hero section" id="hero">
+        <div class="container hero-grid">
+          <div class="hero-copy">
+            {% if profile.status_text %}
+            <div class="status-pill">
+              <span class="status-dot"></span>
+              <span>{{ profile.status_text }}</span>
+            </div>
+            {% endif %}
+            
+            <h1 class="hero-title">
+              {{ profile.name.split(' ')[0] }} {{ profile.name.split(' ')[1] if profile.name.split(' ')|length > 1 else '' }} <span class="gradient-text">{{ profile.name.split(' ')[2] if profile.name.split(' ')|length > 2 else '' }}</span>
+            </h1>
+
+            <div class="typing-container" aria-label="Role typing animation" data-roles='{{ profile.role_typing | tojson }}'>
+              <span class="typing-prefix">I am a </span>
+              <span id="typed-text" class="typed-text"></span>
+              <span class="typing-cursor">|</span>
+            </div>
+
+            <p class="hero-description">
+              {{ profile.description }}
+            </p>
+
+            <div class="hero-actions">
+              <a href="#projects" class="button button-primary glow-button">
+                <span>View Projects</span> <i class="fa-solid fa-arrow-right"></i>
+              </a>
+              <a href="#contact" class="button button-secondary">
+                <i class="fa-regular fa-paper-plane"></i> <span>Get in Touch</span>
+              </a>
+              <a href="#about" class="button button-ghost">
+                <span>Explore Background</span>
+              </a>
+            </div>
+
+            {% if metrics %}
+            <div class="hero-metrics">
+              {% for metric in metrics %}
+              <div class="metric-item">
+                <span class="metric-val">{{ metric.val }}</span>
+                <span class="metric-label">{{ metric.label }}</span>
+              </div>
+              {% if not loop.last %}
+              <div class="metric-divider"></div>
+              {% endif %}
+              {% endfor %}
+            </div>
+            {% endif %}
+          </div>
+
+          <div class="hero-visual" aria-label="Profile and technology showcase">
+            <div class="profile-orbit tilt-card" id="profile-orbit">
+              <div class="orbit-glow"></div>
+              <div class="orbit-ring orbit-ring-1"></div>
+              <div class="orbit-ring orbit-ring-2"></div>
+              <div class="orbit-ring orbit-ring-3"></div>
+              
+              <div class="orbit-core">
+                <img src="/{{ profile.profile_image }}" alt="{{ profile.name }} - Backend Developer" class="profile-img">
+              </div>
+
+              <!-- Orbiting Tech Badges -->
+              <span class="tech-badge tech-badge-python" title="Python">
+                <i class="fa-brands fa-python"></i> Python
+              </span>
+              <span class="tech-badge tech-badge-flask" title="Flask Backend">
+                <i class="fa-solid fa-flask"></i> Flask
+              </span>
+              <span class="tech-badge tech-badge-postgres" title="PostgreSQL">
+                <i class="fa-solid fa-database"></i> PostgreSQL
+              </span>
+              <span class="tech-badge tech-badge-api" title="REST APIs">
+                <i class="fa-solid fa-network-wired"></i> REST API
+              </span>
+              <span class="tech-badge tech-badge-docker" title="Docker">
+                <i class="fa-brands fa-docker"></i> Docker
+              </span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Stats Section -->
+      <section class="stats section section-tight" id="stats">
+        <div class="container">
+          <div class="section-heading">
+            <p class="eyebrow"><i class="fa-solid fa-chart-line"></i> Proven Traction</p>
+            <h2>Built on code, verified by metrics.</h2>
+          </div>
+          <div class="stats-grid">
+            {% for stat in stats %}
+            <article class="stat-card tilt-card">
+              <div class="stat-icon-wrap"><i class="{{ stat.icon }}"></i></div>
+              <strong data-count="{{ stat.count }}">0</strong>
+              <span>{{ stat.label }}</span>
+              <p class="stat-detail">{{ stat.detail }}</p>
+            </article>
+            {% endfor %}
+          </div>
+        </div>
+      </section>
+
+      <!-- About Section -->
+      <section class="section" id="about">
+        <div class="container">
+          <div class="section-heading">
+            <p class="eyebrow"><i class="fa-solid fa-user-astronaut"></i> Background & Focus</p>
+            <h2>Architecting dependable software from the ground up.</h2>
+          </div>
+          <div class="feature-grid">
+            {% for card in about_cards %}
+            <article class="feature-card tilt-card">
+              <div class="feature-icon"><i class="{{ card.icon }}"></i></div>
+              <h3>{{ card.title }}</h3>
+              <p>{{ card.description }}</p>
+              <div class="feature-tag">{{ card.tag }}</div>
+            </article>
+            {% endfor %}
+          </div>
+        </div>
+      </section>
+
+      <!-- Skills & Tech Stack Section -->
+      <section class="section" id="skills">
+        <div class="container">
+          <div class="section-heading">
+            <p class="eyebrow"><i class="fa-solid fa-layer-group"></i> Technical Arsenal</p>
+            <h2>Technologies & tools I leverage to build solutions.</h2>
+          </div>
+
+          <div class="skills-wrapper">
+            <!-- Backend Category -->
+            <div class="skill-category-card">
+              <div class="skill-cat-header">
+                <i class="fa-solid fa-code-branch"></i>
+                <h3>Backend & Core</h3>
+              </div>
+              <div class="skills-pill-group">
+                {% for skill in skills if skill.category == 'backend' %}
+                <div class="skill-pill"><i class="{{ skill.icon }}"></i> {{ skill.name }}</div>
+                {% endfor %}
+              </div>
+            </div>
+
+            <!-- Database Category -->
+            <div class="skill-category-card">
+              <div class="skill-cat-header">
+                <i class="fa-solid fa-database"></i>
+                <h3>Databases & ORM</h3>
+              </div>
+              <div class="skills-pill-group">
+                {% for skill in skills if skill.category == 'database' %}
+                <div class="skill-pill"><i class="{{ skill.icon }}"></i> {{ skill.name }}</div>
+                {% endfor %}
+              </div>
+            </div>
+
+            <!-- DevOps & Tools -->
+            <div class="skill-category-card">
+              <div class="skill-cat-header">
+                <i class="fa-solid fa-screwdriver-wrench"></i>
+                <h3>DevOps, Tools & OS</h3>
+              </div>
+              <div class="skills-pill-group">
+                {% for skill in skills if skill.category == 'devops' %}
+                <div class="skill-pill"><i class="{{ skill.icon }}"></i> {{ skill.name }}</div>
+                {% endfor %}
+              </div>
+            </div>
+
+            <!-- Web & Frontend -->
+            <div class="skill-category-card">
+              <div class="skill-cat-header">
+                <i class="fa-solid fa-laptop-code"></i>
+                <h3>Frontend & UI</h3>
+              </div>
+              <div class="skills-pill-group">
+                {% for skill in skills if skill.category == 'frontend' %}
+                <div class="skill-pill"><i class="{{ skill.icon }}"></i> {{ skill.name }}</div>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Projects Section -->
+      <section class="section" id="projects">
+        <div class="container">
+          <div class="section-heading">
+            <p class="eyebrow"><i class="fa-solid fa-rocket"></i> Featured Work</p>
+            <h2>Proven software engineered with precision.</h2>
+          </div>
+          
+          <div class="project-stack">
+            {% for project in projects %}
+            <article class="project-card {{ 'project-card-left' if loop.index % 2 != 0 else 'project-card-right' }} tilt-card">
+              <div class="project-visual {{ project.visual_class }}">
+                {% if project.badge %}
+                <div class="project-badge-tag"><i class="{{ project.badge_icon or 'fa-solid fa-star' }}"></i> {{ project.badge }}</div>
+                {% endif %}
+                <span class="project-screenshot-label">{{ project.screenshot_label or project.title }}</span>
+              </div>
+              <div class="project-content">
+                <p class="project-kicker">{{ project.kicker }}</p>
+                <h3>{{ project.title }}</h3>
+                <p>{{ project.description }}</p>
+                <div class="tech-row">
+                  {% for tech in project.tech_tags %}
+                  <span>{{ tech }}</span>
+                  {% endfor %}
+                </div>
+                <div class="project-links">
+                  {% if project.github_url %}
+                  <a target="_blank" rel="noopener noreferrer" href="{{ project.github_url }}" class="project-btn">
+                    <i class="fa-brands fa-github"></i> GitHub Code
+                  </a>
+                  {% endif %}
+                  {% if project.demo_url %}
+                  <a target="_blank" rel="noopener noreferrer" href="{{ project.demo_url }}" class="project-btn project-btn-live">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo
+                  </a>
+                  {% else %}
+                  <a href="#contact" class="project-btn">
+                    <i class="fa-solid fa-envelope"></i> Request Demo
+                  </a>
+                  {% endif %}
+                </div>
+              </div>
+            </article>
+            {% endfor %}
+          </div>
+        </div>
+      </section>
+
+      <!-- Certificates Section -->
+      <section class="section" id="certificates">
+        <div class="container">
+          <div class="section-heading">
+            <p class="eyebrow"><i class="fa-solid fa-award"></i> Verified Credentials</p>
+            <h2>Recognized achievements & technical certifications.</h2>
+          </div>
+          <div class="certificate-grid">
+            {% for cert in certificates %}
+            <button class="certificate-card tilt-card" data-title="{{ cert.title }}" data-issuer="{{ cert.issuer }}" data-year="{{ cert.year }}" data-preview="/{{ cert.preview }}" type="button" aria-label="View {{ cert.title }} Certificate">
+              <div class="certificate-image">
+                <img src="/{{ cert.preview }}" alt="{{ cert.title }} Certificate Preview">
+                <div class="cert-overlay-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+              </div>
+              <div class="certificate-meta">
+                <h3>{{ cert.title }}</h3>
+                <p>{{ cert.issuer }} • {{ cert.year }}</p>
+                <span class="cert-badge"><i class="fa-solid fa-check-circle"></i> View Credential</span>
+              </div>
+            </button>
+            {% endfor %}
+          </div>
+        </div>
+      </section>
+
+      <!-- Journey Section -->
+      <section class="section" id="journey">
+        <div class="container">
+          <div class="section-heading">
+            <p class="eyebrow"><i class="fa-solid fa-timeline"></i> Milestones</p>
+            <h2>Progression from foundational code to production systems.</h2>
+          </div>
+          <div class="timeline">
+            {% for milestone in timeline %}
+            <article class="timeline-item">
+              <div class="timeline-marker"></div>
+              <div class="timeline-year">{{ milestone.year }}</div>
+              <div class="timeline-content">
+                <h3>{{ milestone.title }}</h3>
+                <p>{{ milestone.description }}</p>
+              </div>
+            </article>
+            {% endfor %}
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact Section -->
+      <section class="section" id="contact">
+        <div class="container">
+          <div class="section-heading">
+            <p class="eyebrow"><i class="fa-solid fa-headset"></i> Connect & Collaborate</p>
+            <h2>Ready to build something impactful together?</h2>
+          </div>
+          <div class="contact-grid">
+            <!-- Contact Form -->
+            <form class="contact-form" id="contact-form" novalidate>
+              <div class="form-header">
+                <h3>Send a Direct Message</h3>
+                <p>Feel free to reach out for project inquiries, collaboration, or full-time opportunities.</p>
+              </div>
+
+              <div class="form-group">
+                <label for="contact-name">Full Name <span class="required">*</span></label>
+                <div class="input-wrap">
+                  <i class="fa-regular fa-user"></i>
+                  <input type="text" id="contact-name" name="name" placeholder="Your Name" required autocomplete="name">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="contact-email">Email Address <span class="required">*</span></label>
+                <div class="input-wrap">
+                  <i class="fa-regular fa-envelope"></i>
+                  <input type="email" id="contact-email" name="email" placeholder="you@example.com" required autocomplete="email">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="contact-message">Message <span class="required">*</span></label>
+                <div class="input-wrap">
+                  <i class="fa-regular fa-comment-dots textarea-icon"></i>
+                  <textarea id="contact-message" name="message" rows="4" placeholder="Describe your project, question, or opportunity..." required></textarea>
+                </div>
+              </div>
+
+              <button type="submit" class="button button-primary form-submit-btn" id="form-submit-btn">
+                <span class="btn-text">Send Message</span>
+                <i class="fa-regular fa-paper-plane btn-icon"></i>
+                <span class="spinner" hidden></span>
+              </button>
+            </form>
+
+            <!-- Contact Panel / Info -->
+            <aside class="contact-panel">
+              <div class="panel-header">
+                <h3>Contact Information</h3>
+                <p>Reach out directly via email, connect on LinkedIn, or inspect my repositories on GitHub.</p>
+              </div>
+
+              <div class="contact-card-list">
+                <!-- Email -->
+                {% if profile.email %}
+                <div class="contact-card">
+                  <div class="contact-card-icon"><i class="fa-regular fa-envelope"></i></div>
+                  <div class="contact-card-content">
+                    <span class="contact-card-label">Email</span>
+                    <a href="mailto:{{ profile.email }}" class="contact-card-val" id="email-text">
+                      {{ profile.email }}
+                    </a>
+                  </div>
+                  <button class="copy-btn" data-copy="{{ profile.email }}" title="Copy Email" aria-label="Copy Email address" type="button">
+                    <i class="fa-regular fa-copy"></i>
+                  </button>
+                </div>
+                {% endif %}
+
+                <!-- GitHub -->
+                {% if profile.github %}
+                <div class="contact-card">
+                  <div class="contact-card-icon"><i class="fa-brands fa-github"></i></div>
+                  <div class="contact-card-content">
+                    <span class="contact-card-label">GitHub</span>
+                    <a href="{{ profile.github }}" target="_blank" rel="noopener noreferrer" class="contact-card-val">
+                      {{ profile.github.replace('https://', '') }}
+                    </a>
+                  </div>
+                  <a href="{{ profile.github }}" target="_blank" rel="noopener noreferrer" class="external-link-btn" title="Open GitHub" aria-label="Open GitHub in new tab">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                  </a>
+                </div>
+                {% endif %}
+
+                <!-- LinkedIn -->
+                {% if profile.linkedin %}
+                <div class="contact-card">
+                  <div class="contact-card-icon"><i class="fa-brands fa-linkedin-in"></i></div>
+                  <div class="contact-card-content">
+                    <span class="contact-card-label">LinkedIn</span>
+                    <a href="{{ profile.linkedin }}" target="_blank" rel="noopener noreferrer" class="contact-card-val">
+                      {{ profile.linkedin.replace('https://', '') }}
+                    </a>
+                  </div>
+                  <a href="{{ profile.linkedin }}" target="_blank" rel="noopener noreferrer" class="external-link-btn" title="Open LinkedIn" aria-label="Open LinkedIn in new tab">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                  </a>
+                </div>
+                {% endif %}
+
+                <!-- Address -->
+                {% if profile.address %}
+                <div class="contact-card">
+                  <div class="contact-card-icon"><i class="fa-solid fa-location-dot"></i></div>
+                  <div class="contact-card-content">
+                    <span class="contact-card-label">Location / Address</span>
+                    <p class="contact-card-val address-val" id="address-text">
+                      {{ profile.address }}
+                    </p>
+                  </div>
+                  <button class="copy-btn" data-copy="{{ profile.address }}" title="Copy Address" aria-label="Copy Address" type="button">
+                    <i class="fa-regular fa-copy"></i>
+                  </button>
+                </div>
+                {% endif %}
+              </div>
+
+              <div class="quick-status-box">
+                <i class="fa-solid fa-circle-check text-green"></i>
+                <span>Open for backend internships, full-time engineering roles, and consulting projects.</span>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <div class="footer-brand">
+          <div class="brand">
+            <span class="brand-mark">AS</span>
+            <span class="brand-text">{{ profile.name }}</span>
+          </div>
+          <p class="footer-tagline">Backend Developer • Python & Flask Specialist • Mumbai, India</p>
+        </div>
+
+        <div class="footer-nav">
+          <a href="#hero">Home</a>
+          <a href="#about">About</a>
+          <a href="#skills">Skills</a>
+          <a href="#projects">Projects</a>
+          <a href="#certificates">Certificates</a>
+          <a href="#contact">Contact</a>
+        </div>
+
+        <div class="footer-social">
+          {% if profile.github %}
+          <a href="{{ profile.github }}" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+          {% endif %}
+          {% if profile.linkedin %}
+          <a href="{{ profile.linkedin }}" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          {% endif %}
+          {% if profile.email %}
+          <a href="mailto:{{ profile.email }}" aria-label="Email"><i class="fa-regular fa-envelope"></i></a>
+          {% endif %}
+        </div>
+
+        <div class="footer-bottom">
+          <p>© 2026 {{ profile.name }}. All rights reserved.</p>
+          <a href="#hero" class="back-to-top-btn" id="back-to-top" aria-label="Back to top">
+            <span>Back to top</span> <i class="fa-solid fa-arrow-up"></i>
+          </a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Certificate Modal Dialog -->
+  <div class="modal-overlay" id="cert-modal" hidden>
+    <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="certificate-title">
+      <button class="modal-close" id="modal-close-btn" type="button" aria-label="Close certificate preview">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <div class="modal-preview">
+        <img src="" alt="" id="modal-img">
+      </div>
+      <div class="modal-copy">
+        <h3 id="certificate-title"></h3>
+        <p id="certificate-issuer"></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toast-container" aria-live="polite" aria-atomic="true"></div>
+</body>
+</html>
