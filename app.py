@@ -179,6 +179,19 @@ def serve_resume(filename):
     return send_from_directory(resume_dir, filename)
 
 
+@app.route('/favicon.ico')
+@app.route('/favicon-32x32.png')
+@app.route('/favicon-16x16.png')
+@app.route('/apple-touch-icon.png')
+@app.route('/site.webmanifest')
+@app.route('/android-chrome-192x192.png')
+@app.route('/android-chrome-512x512.png')
+def serve_favicons():
+    """Serve favicon and webmanifest assets from the root directory."""
+    filename = request.path.lstrip('/')
+    return send_from_directory(BASE_DIR, filename)
+
+
 @app.route('/api/profile', methods=['GET'])
 def get_public_profile():
     """Public JSON API returning current profile and projects."""

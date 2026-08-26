@@ -8,6 +8,13 @@
   <meta name="theme-color" content="#0D1117">
   <title>{{ profile.name }} | Backend Developer & Python Specialist</title>
   
+  <!-- Favicon Package -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="shortcut icon" href="/favicon.ico">
+  
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -38,7 +45,10 @@
     <header class="site-header" id="site-header">
       <div class="container header-inner">
         <a class="brand" href="#hero" aria-label="Go to top">
-          <span class="brand-mark">AS</span>
+          <span class="brand-mark">
+            <img src="/assets/images/logo.png" alt="Ansari Mohammed Sameer Logo" class="brand-logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
+            <span class="brand-logo-fallback" style="display:none;">AS</span>
+          </span>
           <span class="brand-text">{{ profile.name }}</span>
         </a>
 
@@ -476,13 +486,18 @@
                   <div class="contact-card-icon"><i class="fa-solid fa-location-dot"></i></div>
                   <div class="contact-card-content">
                     <span class="contact-card-label">Location / Address</span>
-                    <p class="contact-card-val address-val" id="address-text">
+                    <a href="https://www.google.com/maps?q=19.056475,72.840852" target="_blank" rel="noopener noreferrer" class="contact-card-val address-val address-link" id="address-text" title="Click to open in Google Maps">
                       {{ profile.address }}
-                    </p>
+                    </a>
                   </div>
-                  <button class="copy-btn" data-copy="{{ profile.address }}" title="Copy Address" aria-label="Copy Address" type="button">
-                    <i class="fa-regular fa-copy"></i>
-                  </button>
+                  <div class="card-action-group">
+                    <button class="copy-btn" data-copy="{{ profile.address }}" title="Copy Address" aria-label="Copy Address" type="button">
+                      <i class="fa-regular fa-copy"></i>
+                    </button>
+                    <a href="https://www.google.com/maps?q=19.056475,72.840852" target="_blank" rel="noopener noreferrer" class="external-link-btn" title="Open in Google Maps" aria-label="Open in Google Maps">
+                      <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    </a>
+                  </div>
                 </div>
                 {% endif %}
               </div>
@@ -502,7 +517,10 @@
       <div class="container footer-inner">
         <div class="footer-brand">
           <div class="brand">
-            <span class="brand-mark">AS</span>
+            <span class="brand-mark">
+              <img src="/assets/images/logo.png" alt="Ansari Mohammed Sameer Logo" class="brand-logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
+              <span class="brand-logo-fallback" style="display:none;">AS</span>
+            </span>
             <span class="brand-text">{{ profile.name }}</span>
           </div>
           <p class="footer-tagline">Backend Developer • Python & Flask Specialist • Mumbai, India</p>

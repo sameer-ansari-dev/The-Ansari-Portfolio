@@ -46,6 +46,8 @@
   color: var(--yellow);
   font-size: 1.6rem;
   box-shadow: 0 0 24px rgba(75, 139, 190, 0.25);
+  overflow: hidden;
+  padding: 2px;
 }
 
 .login-header h1 {

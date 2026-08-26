@@ -205,6 +205,21 @@ button, input, textarea {
   font-size: 1.1rem;
   box-shadow: 0 0 16px rgba(75, 139, 190, 0.2);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+  padding: 2px;
+}
+
+.brand-logo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 9px;
+  display: block;
+}
+
+.brand-logo-fallback {
+  display: grid;
+  place-items: center;
 }
 
 .brand:hover .brand-mark {
@@ -1407,6 +1422,23 @@ button, input, textarea {
 .address-val {
   white-space: normal;
   line-height: 1.4;
+}
+
+.address-link {
+  transition: color 0.2s ease;
+  cursor: pointer;
+}
+
+.address-link:hover {
+  color: var(--yellow);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.card-action-group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 
 .copy-btn, .external-link-btn {

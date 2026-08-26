@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -7,6 +7,13 @@
   <meta name="author" content="Ansari Mohammed Sameer">
   <meta name="theme-color" content="#0D1117">
   <title>Ansari Mohammed Sameer | Backend Developer & Python Specialist</title>
+  
+  <!-- Favicon Package -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="shortcut icon" href="/favicon.ico">
   
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -38,7 +45,10 @@
     <header class="site-header" id="site-header">
       <div class="container header-inner">
         <a class="brand" href="#hero" aria-label="Go to top">
-          <span class="brand-mark">AS</span>
+          <span class="brand-mark">
+            <img src="assets/images/logo.png" alt="Ansari Mohammed Sameer Logo" class="brand-logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
+            <span class="brand-logo-fallback" style="display:none;">AS</span>
+          </span>
           <span class="brand-text">Ansari Mohammed Sameer</span>
         </a>
 
@@ -139,7 +149,7 @@
               <div class="orbit-ring orbit-ring-3"></div>
               
               <div class="orbit-core">
-                <img src="assets/images/profile.png" alt="Ansari Mohammed Sameer - Backend Developer" class="profile-img">
+                <img src="assets/images/Python_Essentials_1.png" alt="Ansari Mohammed Sameer - Backend Developer" class="profile-img">
               </div>
 
               <!-- Orbiting Tech Badges -->
@@ -426,9 +436,9 @@
           </div>
           <div class="certificate-grid">
             <!-- Cert 1 -->
-            <button class="certificate-card tilt-card" data-title="Python Essentials 1" data-issuer="Cisco Networking Academy" data-year="2024" data-preview="assets/images/profile.png" type="button" aria-label="View Python Essentials 1 Certificate">
+            <button class="certificate-card tilt-card" data-title="Python Essentials 1" data-issuer="Cisco Networking Academy" data-year="2024" data-preview="assets/images/Python_Essentials_1.png" type="button" aria-label="View Python Essentials 1 Certificate">
               <div class="certificate-image certificate-image-placeholder">
-                <img src="assets/images/profile.png" alt="Python Essentials 1 Cisco Certificate Preview">
+                <img src="assets/images/Python_Essentials_1.png" alt="Python Essentials 1 Cisco Certificate Preview">
                 <div class="cert-overlay-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
               </div>
               <div class="certificate-meta">
@@ -452,9 +462,9 @@
             </button>
 
             <!-- Cert 3 -->
-            <button class="certificate-card tilt-card" data-title="Database Fundamentals & SQL" data-issuer="Specialized Coursework" data-year="2024" data-preview="assets/images/profile.png" type="button" aria-label="View Database Fundamentals Certificate">
+            <button class="certificate-card tilt-card" data-title="Database Fundamentals & SQL" data-issuer="Specialized Coursework" data-year="2024" data-preview="assets/images/Python_Essentials_1.png" type="button" aria-label="View Database Fundamentals Certificate">
               <div class="certificate-image certificate-image-placeholder">
-                <img src="assets/images/profile.png" alt="Database Fundamentals Certificate Preview">
+                <img src="assets/images/Python_Essentials_1.png" alt="Database Fundamentals Certificate Preview">
                 <div class="cert-overlay-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
               </div>
               <div class="certificate-meta">
@@ -624,13 +634,18 @@
                   <div class="contact-card-icon"><i class="fa-solid fa-location-dot"></i></div>
                   <div class="contact-card-content">
                     <span class="contact-card-label">Location / Address</span>
-                    <p class="contact-card-val address-val" id="address-text">
+                    <a href="https://www.google.com/maps?q=19.056475,72.840852" target="_blank" rel="noopener noreferrer" class="contact-card-val address-val address-link" id="address-text" title="Click to open in Google Maps">
                       Gate no. 18, Navpada people welfare, Ghas bazar, Bandra East, Mumbai 400051
-                    </p>
+                    </a>
                   </div>
-                  <button class="copy-btn" data-copy="Gate no. 18, Navpada people welfare, Ghas bazar, Bandra East, Mumbai 400051" title="Copy Address" aria-label="Copy Address" type="button">
-                    <i class="fa-regular fa-copy"></i>
-                  </button>
+                  <div class="card-action-group">
+                    <button class="copy-btn" data-copy="Gate no. 18, Navpada people welfare, Ghas bazar, Bandra East, Mumbai 400051" title="Copy Address" aria-label="Copy Address" type="button">
+                      <i class="fa-regular fa-copy"></i>
+                    </button>
+                    <a href="https://www.google.com/maps?q=19.056475,72.840852" target="_blank" rel="noopener noreferrer" class="external-link-btn" title="Open in Google Maps" aria-label="Open in Google Maps">
+                      <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    </a>
+                  </div>
                 </div>
               </div>
 
@@ -649,7 +664,10 @@
       <div class="container footer-inner">
         <div class="footer-brand">
           <div class="brand">
-            <span class="brand-mark">AS</span>
+            <span class="brand-mark">
+              <img src="assets/images/logo.png" alt="Ansari Mohammed Sameer Logo" class="brand-logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
+              <span class="brand-logo-fallback" style="display:none;">AS</span>
+            </span>
             <span class="brand-text">Ansari Mohammed Sameer</span>
           </div>
           <p class="footer-tagline">Backend Developer • Python & Flask Specialist • Mumbai, India</p>

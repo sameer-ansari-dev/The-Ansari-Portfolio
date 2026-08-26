@@ -5,6 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Admin Dashboard • Ansari Mohammed Sameer</title>
   
+  <!-- Favicon Package -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="shortcut icon" href="/favicon.ico">
+  
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -25,7 +32,10 @@
     <aside class="admin-sidebar" id="admin-sidebar">
       <div class="sidebar-header">
         <a href="/" target="_blank" class="sidebar-brand" title="View live portfolio">
-          <span class="brand-mark">AS</span>
+          <span class="brand-mark">
+            <img src="/assets/images/logo.png" alt="Logo" class="brand-logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
+            <span class="brand-logo-fallback" style="display:none;">AS</span>
+          </span>
           <div class="brand-info">
             <span class="brand-name">Sameer CMS</span>
             <span class="brand-badge">Admin</span>
