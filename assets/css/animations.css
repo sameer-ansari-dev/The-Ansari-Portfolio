@@ -1,47 +1,175 @@
 /* ==========================================================================
-   Ansari Mohammed Sameer - Portfolio Animations & Keyframes
+   Ansari Mohammed Sameer - Portfolio 3D Animations & Keyframes
    ========================================================================== */
 
-/* Planetary Orbital Rotations */
+/* --------------------------------------------------------------------------
+   1. Planetary Orbital Rotations & Floating Physics
+   -------------------------------------------------------------------------- */
 @keyframes spinClockwise {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
 @keyframes spinCounterClockwise {
-  from {
-    transform: rotate(0deg);
+  from { transform: rotate(0deg); }
+  to { transform: rotate(-360deg); }
+}
+
+@keyframes float3d {
+  0%, 100% {
+    transform: translateY(0px) rotateX(0deg) rotateY(0deg);
   }
-  to {
-    transform: rotate(-360deg);
+  50% {
+    transform: translateY(-8px) rotateX(1.5deg) rotateY(-1.5deg);
   }
 }
 
-/* Floating Tech Badges */
-@keyframes floatBadge {
-  0%, 100% {
-    transform: translateY(0) rotate(0deg);
-  }
-  50% {
-    transform: translateY(-8px) rotate(1deg);
-  }
+.floating-3d-element {
+  animation: float3d 5.5s ease-in-out infinite;
+  transform-style: preserve-3d;
+  will-change: transform;
 }
 
-/* Typing Cursor Blink */
-@keyframes blinkCursor {
-  0%, 100% {
-    opacity: 1;
+/* --------------------------------------------------------------------------
+   2. Floating Tech Badges (Smooth & Glitch-Free)
+   -------------------------------------------------------------------------- */
+@keyframes floatPython {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-7px) rotate(1deg); }
+}
+
+@keyframes floatFlask {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(6px) rotate(-1deg); }
+}
+
+@keyframes floatPostgres {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-6px) rotate(1deg); }
+}
+
+@keyframes floatApi {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(6px) rotate(-1deg); }
+}
+
+@keyframes floatDocker {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-6px) rotate(1deg); }
+}
+
+/* --------------------------------------------------------------------------
+   3. Multi-Layer Energy Pulse Waves
+   -------------------------------------------------------------------------- */
+@keyframes energyPulseWave {
+  0% {
+    transform: scale(0.85);
+    opacity: 0.8;
+    border-color: rgba(56, 189, 248, 0.6);
   }
   50% {
+    opacity: 0.4;
+    border-color: rgba(75, 139, 190, 0.4);
+  }
+  100% {
+    transform: scale(1.5);
     opacity: 0;
+    border-color: rgba(255, 212, 59, 0);
   }
 }
 
-/* Status Indicator Dot Pulse */
+.energy-pulse {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 280px;
+  height: 280px;
+  margin-top: -140px;
+  margin-left: -140px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(56, 189, 248, 0.4);
+  pointer-events: none;
+  animation: energyPulseWave 4s cubic-bezier(0.15, 0.85, 0.35, 1.2) infinite;
+}
+
+.energy-pulse.pulse-1 { animation-delay: 0s; }
+.energy-pulse.pulse-2 { animation-delay: 1.35s; }
+.energy-pulse.pulse-3 { animation-delay: 2.7s; }
+
+/* --------------------------------------------------------------------------
+   4. Hologram Core & Specular Sheen
+   -------------------------------------------------------------------------- */
+.core-specular-sheen {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.15) 0%,
+    rgba(56, 189, 248, 0.08) 40%,
+    transparent 60%
+  );
+  pointer-events: none;
+  z-index: 3;
+}
+
+/* --------------------------------------------------------------------------
+   5. Text Shimmer Sweep Animation
+   -------------------------------------------------------------------------- */
+@keyframes textShimmerSweep {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+.shimmer-text {
+  background: linear-gradient(
+    90deg,
+    #FFFFFF 0%,
+    var(--yellow) 25%,
+    #38BDF8 50%,
+    var(--yellow) 75%,
+    #FFFFFF 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: textShimmerSweep 5s linear infinite;
+}
+
+/* --------------------------------------------------------------------------
+   6. Timeline Active Glow Stream & Marker Pulse
+   -------------------------------------------------------------------------- */
+@keyframes markerPulseGlow {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 10px rgba(56, 189, 248, 0.6), 0 0 20px rgba(75, 139, 190, 0.3);
+  }
+  50% {
+    transform: scale(1.25);
+    box-shadow: 0 0 18px rgba(255, 212, 59, 0.8), 0 0 28px rgba(56, 189, 248, 0.5);
+  }
+}
+
+.marker-pulse {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--yellow);
+  animation: markerPulseGlow 3s ease-in-out infinite;
+}
+
+/* --------------------------------------------------------------------------
+   7. Typing Cursor & Button Glows
+   -------------------------------------------------------------------------- */
+@keyframes blinkCursor {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
 @keyframes pulseGreen {
   0%, 100% {
     transform: scale(1);
@@ -53,7 +181,6 @@
   }
 }
 
-/* Glow Button Pulse */
 @keyframes glowPulse {
   0%, 100% {
     box-shadow: 0 0 20px rgba(75, 139, 190, 0.35);
@@ -67,7 +194,6 @@
   animation: glowPulse 4s infinite ease-in-out;
 }
 
-/* Spinner Animation for AJAX Form Submissions */
 .spinner {
   display: inline-block;
   width: 18px;
@@ -79,56 +205,18 @@
   margin-left: 6px;
 }
 
-/* 3D Tilt Card Support */
+/* --------------------------------------------------------------------------
+   8. 3D Tilt Card Base
+   -------------------------------------------------------------------------- */
 .tilt-card {
   transform-style: preserve-3d;
-  transition: transform 0.15s ease-out, box-shadow 0.25s ease;
+  transition: transform 0.18s ease-out, box-shadow 0.28s ease, border-color 0.28s ease;
   will-change: transform;
 }
 
-/* Scroll Entrance Reveals */
-.reveal-on-scroll {
-  opacity: 0;
-  transform: translateY(28px);
-  transition: opacity 0.75s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.75s cubic-bezier(0.2, 0.8, 0.2, 1);
-  will-change: opacity, transform;
-}
-
-.reveal-on-scroll.is-revealed {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Shimmer Highlight Effect on Cards */
-.shimmer-effect {
-  position: relative;
-  overflow: hidden;
-}
-
-.shimmer-effect::after {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: linear-gradient(
-    60deg,
-    transparent 20%,
-    rgba(255, 255, 255, 0.05) 25%,
-    transparent 30%
-  );
-  transform: rotate(30deg);
-  opacity: 0;
-  transition: opacity 0.3s ease, transform 0.8s ease;
-}
-
-.shimmer-effect:hover::after {
-  opacity: 1;
-  transform: rotate(30deg) translate(20%, 20%);
-}
-
-/* Reduced Motion Safeguard */
+/* --------------------------------------------------------------------------
+   9. Reduced Motion Safeguard
+   -------------------------------------------------------------------------- */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
@@ -138,12 +226,8 @@
   }
 
   .orbit-ring-1, .orbit-ring-2, .orbit-ring-3,
-  .tech-badge, .glow-button, .status-dot {
+  .tech-badge, .glow-button, .status-dot,
+  .floating-3d-element, .energy-pulse, .shimmer-text, .marker-pulse {
     animation: none !important;
-  }
-
-  .reveal-on-scroll {
-    opacity: 1 !important;
-    transform: none !important;
   }
 }

@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -28,14 +28,20 @@
   <link rel="stylesheet" href="assets/css/animations.css">
   <link rel="stylesheet" href="assets/css/responsive.css">
 
-  <!-- GSAP & Scripts -->
+  <!-- GSAP, Three.js, Lenis & Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
   <script src="assets/js/main.js" defer></script>
 </head>
 <body>
-  <!-- Ambient Particle Constellation Canvas -->
+  <!-- Ambient Cursor Spotlight Effect -->
+  <div class="cursor-spotlight" id="cursor-spotlight" aria-hidden="true"></div>
+
+  <!-- Ambient 3D Particle Starfield & Moving Perspective Grid Canvas -->
   <canvas id="particle-canvas" class="particle-canvas" aria-hidden="true"></canvas>
+  <div class="cyber-perspective-grid" aria-hidden="true"></div>
 
   <!-- Scroll Progress Indicator -->
   <div class="scroll-progress-bar" id="scroll-progress" aria-hidden="true"></div>
@@ -97,8 +103,8 @@
               <span>Available for Backend & Engineering Roles</span>
             </div>
             
-            <h1 class="hero-title">
-              Ansari Mohammed <span class="gradient-text">Sameer</span>
+            <h1 class="hero-title" id="hero-heading">
+              Ansari Mohammed <span class="gradient-text shimmer-text">Sameer</span>
             </h1>
 
             <div class="typing-container" aria-label="Role typing animation">
@@ -142,17 +148,26 @@
           </div>
 
           <div class="hero-visual" aria-label="Profile and technology showcase">
-            <div class="profile-orbit tilt-card" id="profile-orbit">
+            <div class="profile-orbit tilt-card floating-3d-element" id="profile-orbit">
               <div class="orbit-glow"></div>
+              
+              <!-- 3D Animated Energy Pulse Waves -->
+              <div class="energy-pulse pulse-1"></div>
+              <div class="energy-pulse pulse-2"></div>
+              <div class="energy-pulse pulse-3"></div>
+
+              <!-- Rotating Planetary Glow Rings -->
               <div class="orbit-ring orbit-ring-1"></div>
               <div class="orbit-ring orbit-ring-2"></div>
               <div class="orbit-ring orbit-ring-3"></div>
               
+              <!-- Core 3D Hologram Frame -->
               <div class="orbit-core">
-                <img src="assets/images/Python_Essentials_1.png" alt="Ansari Mohammed Sameer - Backend Developer" class="profile-img">
+                <div class="core-specular-sheen"></div>
+                <img src="assets/images/profile.png" alt="Ansari Mohammed Sameer - Backend Developer" class="profile-img">
               </div>
 
-              <!-- Orbiting Tech Badges -->
+              <!-- Orbiting Tech Badges with Independent Floating & Hover Pause -->
               <span class="tech-badge tech-badge-python" title="Python">
                 <i class="fa-brands fa-python"></i> Python
               </span>
@@ -484,9 +499,10 @@
             <p class="eyebrow"><i class="fa-solid fa-timeline"></i> Milestones</p>
             <h2>Progression from foundational code to production systems.</h2>
           </div>
-          <div class="timeline">
-            <article class="timeline-item">
-              <div class="timeline-marker"></div>
+          <div class="timeline" id="journey-timeline">
+            <div class="timeline-glow-line" id="timeline-glow-line" aria-hidden="true"></div>
+            <article class="timeline-item tilt-card" data-year="2022">
+              <div class="timeline-marker"><div class="marker-pulse"></div></div>
               <div class="timeline-year">2022</div>
               <div class="timeline-content">
                 <h3>BSc IT Inception</h3>
@@ -494,8 +510,8 @@
               </div>
             </article>
 
-            <article class="timeline-item">
-              <div class="timeline-marker"></div>
+            <article class="timeline-item tilt-card" data-year="2023">
+              <div class="timeline-marker"><div class="marker-pulse"></div></div>
               <div class="timeline-year">2023</div>
               <div class="timeline-content">
                 <h3>Python Mastery & Automation</h3>
@@ -503,8 +519,8 @@
               </div>
             </article>
 
-            <article class="timeline-item">
-              <div class="timeline-marker"></div>
+            <article class="timeline-item tilt-card" data-year="2024">
+              <div class="timeline-marker"><div class="marker-pulse"></div></div>
               <div class="timeline-year">2024</div>
               <div class="timeline-content">
                 <h3>Backend Architecture & Databases</h3>
@@ -512,8 +528,8 @@
               </div>
             </article>
 
-            <article class="timeline-item">
-              <div class="timeline-marker"></div>
+            <article class="timeline-item tilt-card" data-year="2025">
+              <div class="timeline-marker"><div class="marker-pulse"></div></div>
               <div class="timeline-year">2025</div>
               <div class="timeline-content">
                 <h3>Shipped Flagship Deployments</h3>
@@ -521,8 +537,8 @@
               </div>
             </article>
 
-            <article class="timeline-item">
-              <div class="timeline-marker"></div>
+            <article class="timeline-item tilt-card" data-year="2026">
+              <div class="timeline-marker"><div class="marker-pulse"></div></div>
               <div class="timeline-year">2026</div>
               <div class="timeline-content">
                 <h3>Scalable Systems & Full-Stack Evolution</h3>

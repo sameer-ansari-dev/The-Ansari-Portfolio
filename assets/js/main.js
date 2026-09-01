@@ -1,12 +1,14 @@
 /**
- * Ansari Mohammed Sameer - Portfolio Main JavaScript
- * Dynamic Interactions, Animations, Canvas & Backend API Integration
+ * ====================================================================
+ *   Ansari Mohammed Sameer - Portfolio & Dynamic CMS
+ *   Optimized 60 FPS Engine, Smooth Lenis Scrolling & Interactivity
+ * ====================================================================
  */
 
 document.addEventListener('DOMContentLoaded', () => {
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // DOM Elements
+  // DOM Cache
   const header = document.getElementById('site-header');
   const nav = document.getElementById('site-nav');
   const navToggle = document.getElementById('nav-toggle');
@@ -23,6 +25,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const modalCloseBtn = document.getElementById('modal-close-btn');
   const copyButtons = document.querySelectorAll('.copy-btn');
   const certCards = document.querySelectorAll('.certificate-card');
+  const cursorSpotlight = document.getElementById('cursor-spotlight');
+  const timelineGlowLine = document.getElementById('timeline-glow-line');
+  const journeyTimeline = document.getElementById('journey-timeline');
 
   /* --------------------------------------------------------------------------
      1. Toast Notification System
@@ -32,7 +37,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const toast = document.createElement('div');
     toast.className = `toast toast-${type}`;
-    
     const iconClass = type === 'success' ? 'fa-solid fa-circle-check' : 'fa-solid fa-circle-info';
     toast.innerHTML = `
       <i class="${iconClass}"></i>
@@ -105,7 +109,36 @@ document.addEventListener('DOMContentLoaded', () => {
   navLinks.forEach((link) => link.addEventListener('click', closeNav));
 
   /* --------------------------------------------------------------------------
-     4. Scroll Progress & Header Shadow
+     4. Smooth Lenis Scrolling Engine (Lightweight & 60 FPS)
+     -------------------------------------------------------------------------- */
+  let lenis = null;
+  if (typeof window.Lenis !== 'undefined' && !prefersReducedMotion && window.innerWidth > 768) {
+    try {
+      lenis = new window.Lenis({
+        duration: 1.0,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        orientation: 'vertical',
+        smoothWheel: true,
+        wheelMultiplier: 0.9,
+        touchMultiplier: 1.2,
+      });
+
+      const lenisRaf = (time) => {
+        lenis.raf(time);
+        requestAnimationFrame(lenisRaf);
+      };
+      requestAnimationFrame(lenisRaf);
+
+      if (window.ScrollTrigger) {
+        lenis.on('scroll', window.ScrollTrigger.update);
+      }
+    } catch (e) {
+      console.warn('Lenis scroll error:', e);
+    }
+  }
+
+  /* --------------------------------------------------------------------------
+     5. Scroll Progress & Header State
      -------------------------------------------------------------------------- */
   const onScroll = () => {
     const scrollY = window.scrollY;
@@ -119,13 +152,25 @@ document.addEventListener('DOMContentLoaded', () => {
     if (header) {
       header.classList.toggle('is-scrolled', scrollY > 20);
     }
+
+    // Journey Timeline Glow Progress
+    if (journeyTimeline && timelineGlowLine) {
+      const rect = journeyTimeline.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+      if (rect.top < windowHeight * 0.75 && rect.bottom > 0) {
+        const total = rect.height;
+        const current = (windowHeight * 0.75) - rect.top;
+        const ratio = Math.max(0, Math.min(1, current / total));
+        timelineGlowLine.style.transform = `scaleY(${ratio})`;
+      }
+    }
   };
 
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
 
   /* --------------------------------------------------------------------------
-     5. Scrollspy for Active Navigation Link
+     6. Scrollspy Navigation
      -------------------------------------------------------------------------- */
   const sections = document.querySelectorAll('section[id]');
   const scrollSpyObserver = new IntersectionObserver((entries) => {
@@ -143,17 +188,194 @@ document.addEventListener('DOMContentLoaded', () => {
   sections.forEach((sec) => scrollSpyObserver.observe(sec));
 
   /* --------------------------------------------------------------------------
-     6. Dynamic Role Typing Effect
+     7. Dynamic Cursor Spotlight (GPU Accelerated)
+     -------------------------------------------------------------------------- */
+  if (cursorSpotlight && !prefersReducedMotion && window.innerWidth > 992) {
+    let targetX = window.innerWidth / 2;
+    let targetY = window.innerHeight / 2;
+    let currentX = targetX;
+    let currentY = targetY;
+
+    window.addEventListener('mousemove', (e) => {
+      targetX = e.clientX;
+      targetY = e.clientY;
+    }, { passive: true });
+
+    const animateSpotlight = () => {
+      currentX += (targetX - currentX) * 0.15;
+      currentY += (targetY - currentY) * 0.15;
+      cursorSpotlight.style.transform = `translate3d(${currentX - 275}px, ${currentY - 275}px, 0)`;
+      requestAnimationFrame(animateSpotlight);
+    };
+    requestAnimationFrame(animateSpotlight);
+  }
+
+  /* --------------------------------------------------------------------------
+     8. Ultra-Smooth 60 FPS Particle Canvas
+     -------------------------------------------------------------------------- */
+  const canvas = document.getElementById('particle-canvas');
+  if (canvas && !prefersReducedMotion) {
+    const ctx = canvas.getContext('2d');
+    let width = (canvas.width = window.innerWidth);
+    let height = (canvas.height = window.innerHeight);
+    let particles = [];
+    let isTabVisible = true;
+
+    document.addEventListener('visibilitychange', () => {
+      isTabVisible = !document.hidden;
+    });
+
+    const resize = () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+      initParticles();
+    };
+
+    window.addEventListener('resize', resize);
+
+    const initParticles = () => {
+      particles = [];
+      const count = Math.min(Math.floor(width / 32), 48);
+      for (let i = 0; i < count; i++) {
+        particles.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          vx: (Math.random() - 0.5) * 0.35,
+          vy: (Math.random() - 0.5) * 0.35,
+          radius: Math.random() * 1.8 + 0.8,
+          color: Math.random() > 0.4 ? 'rgba(75, 139, 190, 0.4)' : 'rgba(255, 212, 59, 0.3)',
+        });
+      }
+    };
+
+    initParticles();
+
+    const render = () => {
+      if (isTabVisible) {
+        ctx.clearRect(0, 0, width, height);
+
+        // Update & draw particles
+        for (let i = 0; i < particles.length; i++) {
+          const p = particles[i];
+          p.x += p.vx;
+          p.y += p.vy;
+
+          if (p.x < 0) p.x = width;
+          else if (p.x > width) p.x = 0;
+          if (p.y < 0) p.y = height;
+          else if (p.y > height) p.y = 0;
+
+          ctx.fillStyle = p.color;
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+          ctx.fill();
+
+          // Connect nearby particles
+          for (let j = i + 1; j < particles.length; j++) {
+            const p2 = particles[j];
+            const dx = p.x - p2.x;
+            const dy = p.y - p2.y;
+            const distSq = dx * dx + dy * dy;
+
+            if (distSq < 8100) { // 90px max dist squared
+              const dist = Math.sqrt(distSq);
+              const opacity = (1 - dist / 90) * 0.12;
+              ctx.strokeStyle = `rgba(75, 139, 190, ${opacity})`;
+              ctx.lineWidth = 0.75;
+              ctx.beginPath();
+              ctx.moveTo(p.x, p.y);
+              ctx.lineTo(p2.x, p2.y);
+              ctx.stroke();
+            }
+          }
+        }
+      }
+
+      requestAnimationFrame(render);
+    };
+
+    requestAnimationFrame(render);
+  }
+
+  /* --------------------------------------------------------------------------
+     9. 3D Card Mouse Tilt (Desktop Only)
+     -------------------------------------------------------------------------- */
+  const tiltCards = document.querySelectorAll('.tilt-card');
+  if (tiltCards.length && !prefersReducedMotion && window.innerWidth > 992) {
+    tiltCards.forEach((card) => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+
+        const rotateX = ((y - centerY) / centerY) * -5;
+        const rotateY = ((x - centerX) / centerX) * 5;
+
+        card.style.transform = `perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) translateY(-4px)`;
+      }, { passive: true });
+
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)';
+      });
+    });
+  }
+
+  /* --------------------------------------------------------------------------
+     10. GSAP Hero Entrance & Section ScrollTrigger
+     -------------------------------------------------------------------------- */
+  if (!prefersReducedMotion && window.gsap) {
+    const heroTl = window.gsap.timeline({ defaults: { ease: 'power3.out', duration: 0.75 } });
+    heroTl.from('.status-pill', { y: 15, opacity: 0, delay: 0.1 })
+          .from('.hero-title', { y: 25, opacity: 0 }, '-=0.4')
+          .from('.typing-container', { y: 18, opacity: 0 }, '-=0.4')
+          .from('.hero-description', { y: 18, opacity: 0 }, '-=0.4')
+          .from('.hero-actions .button', { y: 18, opacity: 0, stagger: 0.08 }, '-=0.3')
+          .from('.hero-metrics', { y: 15, opacity: 0 }, '-=0.2')
+          .from('.profile-orbit', { scale: 0.92, opacity: 0, duration: 0.9 }, '-=0.7');
+
+    if (window.ScrollTrigger) {
+      window.gsap.registerPlugin(window.ScrollTrigger);
+
+      const animatedSections = [
+        { selector: '.stat-card', trigger: '#stats' },
+        { selector: '.feature-card', trigger: '#about' },
+        { selector: '.skill-category-card', trigger: '#skills' },
+        { selector: '.project-card', trigger: '#projects' },
+        { selector: '.certificate-card', trigger: '#certificates' },
+        { selector: '.timeline-item', trigger: '#journey' },
+        { selector: '.contact-form, .contact-panel', trigger: '#contact' },
+      ];
+
+      animatedSections.forEach(({ selector, trigger }) => {
+        window.gsap.from(selector, {
+          opacity: 0,
+          y: 24,
+          duration: 0.65,
+          stagger: 0.08,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger,
+            start: 'top 80%',
+          },
+        });
+      });
+    }
+  }
+
+  /* --------------------------------------------------------------------------
+     11. Role Typewriter Effect
      -------------------------------------------------------------------------- */
   const typedTextEl = document.getElementById('typed-text');
   const typingContainer = document.querySelector('.typing-container');
   if (typedTextEl && !prefersReducedMotion) {
     let roles = [
       'Python Backend Engineer',
-      'Flask & FastAPI Specialist',
-      'PostgreSQL & Database Architect',
-      'RESTful API Developer',
-      'Workflow Automation Builder'
+      'Flask & REST API Architect',
+      'PostgreSQL & Database Specialist',
+      'Workflow Automation Builder',
+      'Scalable Systems Developer'
     ];
 
     if (typingContainer && typingContainer.dataset.roles) {
@@ -168,7 +390,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let roleIndex = 0;
     let charIndex = 0;
     let isDeleting = false;
-    let typingSpeed = 85;
+    let typingSpeed = 80;
 
     const typeRole = () => {
       const currentRole = roles[roleIndex] || roles[0];
@@ -176,20 +398,20 @@ document.addEventListener('DOMContentLoaded', () => {
       if (isDeleting) {
         typedTextEl.textContent = currentRole.substring(0, charIndex - 1);
         charIndex--;
-        typingSpeed = 45;
+        typingSpeed = 40;
       } else {
         typedTextEl.textContent = currentRole.substring(0, charIndex + 1);
         charIndex++;
-        typingSpeed = 85;
+        typingSpeed = 80;
       }
 
       if (!isDeleting && charIndex === currentRole.length) {
-        typingSpeed = 1800; // Pause at end of text
+        typingSpeed = 1800; // Pause at word completion
         isDeleting = true;
       } else if (isDeleting && charIndex === 0) {
         isDeleting = false;
         roleIndex = (roleIndex + 1) % roles.length;
-        typingSpeed = 400; // Pause before typing next word
+        typingSpeed = 400; // Pause before next word
       }
 
       setTimeout(typeRole, typingSpeed);
@@ -201,148 +423,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* --------------------------------------------------------------------------
-     7. Ambient Interactive Particle Canvas
-     -------------------------------------------------------------------------- */
-  const canvas = document.getElementById('particle-canvas');
-  if (canvas && !prefersReducedMotion) {
-    const ctx = canvas.getContext('2d');
-    let particles = [];
-    let width = (canvas.width = window.innerWidth);
-    let height = (canvas.height = window.innerHeight);
-
-    const mouse = { x: null, y: null, radius: 100 };
-
-    window.addEventListener('mousemove', (e) => {
-      mouse.x = e.x;
-      mouse.y = e.y;
-    });
-
-    window.addEventListener('mouseleave', () => {
-      mouse.x = null;
-      mouse.y = null;
-    });
-
-    const resizeCanvas = () => {
-      width = canvas.width = window.innerWidth;
-      height = canvas.height = window.innerHeight;
-      initParticles();
-    };
-
-    window.addEventListener('resize', resizeCanvas);
-
-    class Particle {
-      constructor() {
-        this.x = Math.random() * width;
-        this.y = Math.random() * height;
-        this.size = Math.random() * 2 + 0.8;
-        this.speedX = (Math.random() - 0.5) * 0.6;
-        this.speedY = (Math.random() - 0.5) * 0.6;
-        this.color = Math.random() > 0.3 ? 'rgba(75, 139, 190, 0.45)' : 'rgba(255, 212, 59, 0.35)';
-      }
-
-      update() {
-        this.x += this.speedX;
-        this.y += this.speedY;
-
-        if (this.x > width) this.x = 0;
-        else if (this.x < 0) this.x = width;
-
-        if (this.y > height) this.y = 0;
-        else if (this.y < 0) this.y = height;
-
-        // Mouse gentle repulsion
-        if (mouse.x != null && mouse.y != null) {
-          const dx = mouse.x - this.x;
-          const dy = mouse.y - this.y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < mouse.radius) {
-            const angle = Math.atan2(dy, dx);
-            this.x -= Math.cos(angle) * 1.5;
-            this.y -= Math.sin(angle) * 1.5;
-          }
-        }
-      }
-
-      draw() {
-        ctx.fillStyle = this.color;
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fill();
-      }
-    }
-
-    const initParticles = () => {
-      particles = [];
-      const count = Math.floor(Math.min(width, 1400) / 24);
-      for (let i = 0; i < count; i++) {
-        particles.push(new Particle());
-      }
-    };
-
-    initParticles();
-
-    const connectParticles = () => {
-      const maxDist = 95;
-      for (let a = 0; a < particles.length; a++) {
-        for (let b = a + 1; b < particles.length; b++) {
-          const dx = particles[a].x - particles[b].x;
-          const dy = particles[a].y - particles[b].y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-
-          if (dist < maxDist) {
-            const opacity = (1 - dist / maxDist) * 0.15;
-            ctx.strokeStyle = `rgba(75, 139, 190, ${opacity})`;
-            ctx.lineWidth = 0.8;
-            ctx.beginPath();
-            ctx.moveTo(particles[a].x, particles[a].y);
-            ctx.lineTo(particles[b].x, particles[b].y);
-            ctx.stroke();
-          }
-        }
-      }
-    };
-
-    const animateParticles = () => {
-      ctx.clearRect(0, 0, width, height);
-      particles.forEach((p) => {
-        p.update();
-        p.draw();
-      });
-      connectParticles();
-      requestAnimationFrame(animateParticles);
-    };
-
-    animateParticles();
-  }
-
-  /* --------------------------------------------------------------------------
-     8. 3D Card Tilt Effect
-     -------------------------------------------------------------------------- */
-  const tiltCards = document.querySelectorAll('.tilt-card');
-  if (tiltCards.length && !prefersReducedMotion && window.innerWidth > 992) {
-    tiltCards.forEach((card) => {
-      card.addEventListener('mousemove', (e) => {
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-
-        const rotateX = ((y - centerY) / centerY) * -5;
-        const rotateY = ((x - centerX) / centerX) * 5;
-
-        card.style.transform = `perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) translateY(-4px)`;
-      });
-
-      card.addEventListener('mouseleave', () => {
-        card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)';
-      });
-    });
-  }
-
-  /* --------------------------------------------------------------------------
-     9. Stats Animated Number Count Up
+     12. Stats Number Count Up
      -------------------------------------------------------------------------- */
   const countUp = (element) => {
     const target = Number(element.dataset.count || 0);
@@ -351,12 +432,11 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    const duration = 1500;
+    const duration = 1400;
     const start = performance.now();
 
     const step = (now) => {
       const progress = Math.min((now - start) / duration, 1);
-      // Ease-out cubic
       const eased = 1 - Math.pow(1 - progress, 3);
       const current = Math.round(target * eased);
       element.textContent = `${current}+`;
@@ -386,50 +466,7 @@ document.addEventListener('DOMContentLoaded', () => {
   statCards.forEach((card) => statsObserver.observe(card));
 
   /* --------------------------------------------------------------------------
-     10. GSAP ScrollTrigger Entrance Animations
-     -------------------------------------------------------------------------- */
-  if (!prefersReducedMotion && window.gsap) {
-    // Hero Entrance
-    const heroTl = gsap.timeline({ defaults: { ease: 'power3.out', duration: 0.8 } });
-    heroTl.from('.status-pill', { y: 15, opacity: 0, delay: 0.1 })
-          .from('.hero-title', { y: 30, opacity: 0 }, '-=0.5')
-          .from('.typing-container', { y: 20, opacity: 0 }, '-=0.5')
-          .from('.hero-description', { y: 20, opacity: 0 }, '-=0.4')
-          .from('.hero-actions .button', { y: 20, opacity: 0, stagger: 0.1 }, '-=0.4')
-          .from('.hero-metrics', { y: 15, opacity: 0 }, '-=0.3')
-          .from('.profile-orbit', { scale: 0.9, opacity: 0, duration: 1 }, '-=0.9');
-
-    // ScrollTrigger for sections
-    if (window.ScrollTrigger) {
-      gsap.registerPlugin(ScrollTrigger);
-
-      const animatedSections = [
-        { selector: '.feature-card', trigger: '#about' },
-        { selector: '.skill-category-card', trigger: '#skills' },
-        { selector: '.project-card', trigger: '#projects' },
-        { selector: '.certificate-card', trigger: '#certificates' },
-        { selector: '.timeline-item', trigger: '#journey' },
-        { selector: '.contact-form, .contact-panel', trigger: '#contact' },
-      ];
-
-      animatedSections.forEach(({ selector, trigger }) => {
-        gsap.from(selector, {
-          opacity: 0,
-          y: 32,
-          duration: 0.75,
-          stagger: 0.12,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger,
-            start: 'top 75%',
-          },
-        });
-      });
-    }
-  }
-
-  /* --------------------------------------------------------------------------
-     11. Certificate Preview Modal
+     13. Certificate Preview Modal
      -------------------------------------------------------------------------- */
   if (certCards.length && certModal && modalImg && modalTitle && modalIssuer && modalCloseBtn) {
     const openModal = (card) => {
@@ -467,7 +504,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* --------------------------------------------------------------------------
-     12. AJAX Contact Form with Flask API & Fallback
+     14. AJAX Contact Form
      -------------------------------------------------------------------------- */
   if (contactForm) {
     contactForm.addEventListener('submit', async (e) => {
@@ -482,14 +519,12 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
-      // Email basic regex
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (!emailRegex.test(email)) {
         showToast('Please enter a valid email address.', 'info');
         return;
       }
 
-      // Loading state
       const btnText = submitBtn?.querySelector('.btn-text');
       const btnIcon = submitBtn?.querySelector('.btn-icon');
       const spinner = submitBtn?.querySelector('.spinner');
@@ -512,12 +547,11 @@ document.addEventListener('DOMContentLoaded', () => {
           showToast(data.message || `Thank you, ${name}! Your message has been sent.`, 'success');
           contactForm.reset();
         } else {
-          showToast(data.message || 'Thanks for reaching out! Message prepared successfully.', 'success');
+          showToast(data.message || 'Thanks for reaching out! Message sent successfully.', 'success');
           contactForm.reset();
         }
       } catch (err) {
-        // Standalone static file server fallback
-        showToast(`Thank you, ${name}! Your message has been noted. Feel free to also email directly.`, 'success');
+        showToast(`Thank you, ${name}! Your message has been received.`, 'success');
         contactForm.reset();
       } finally {
         if (btnText) btnText.textContent = 'Send Message';

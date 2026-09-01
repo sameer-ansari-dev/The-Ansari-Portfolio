@@ -28,14 +28,20 @@
   <link rel="stylesheet" href="/assets/css/animations.css">
   <link rel="stylesheet" href="/assets/css/responsive.css">
 
-  <!-- GSAP & Scripts -->
+  <!-- GSAP, Three.js, Lenis & Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
   <script src="/assets/js/main.js" defer></script>
 </head>
 <body>
-  <!-- Ambient Particle Constellation Canvas -->
+  <!-- Ambient Cursor Spotlight Effect -->
+  <div class="cursor-spotlight" id="cursor-spotlight" aria-hidden="true"></div>
+
+  <!-- Ambient 3D Particle Starfield & Moving Perspective Grid Canvas -->
   <canvas id="particle-canvas" class="particle-canvas" aria-hidden="true"></canvas>
+  <div class="cyber-perspective-grid" aria-hidden="true"></div>
 
   <!-- Scroll Progress Indicator -->
   <div class="scroll-progress-bar" id="scroll-progress" aria-hidden="true"></div>
@@ -105,8 +111,8 @@
             </div>
             {% endif %}
             
-            <h1 class="hero-title">
-              {{ profile.name.split(' ')[0] }} {{ profile.name.split(' ')[1] if profile.name.split(' ')|length > 1 else '' }} <span class="gradient-text">{{ profile.name.split(' ')[2] if profile.name.split(' ')|length > 2 else '' }}</span>
+            <h1 class="hero-title" id="hero-heading">
+              {{ profile.name.split(' ')[0] }} {{ profile.name.split(' ')[1] if profile.name.split(' ')|length > 1 else '' }} <span class="gradient-text shimmer-text">{{ profile.name.split(' ')[2] if profile.name.split(' ')|length > 2 else '' }}</span>
             </h1>
 
             <div class="typing-container" aria-label="Role typing animation" data-roles='{{ profile.role_typing | tojson }}'>
@@ -147,17 +153,26 @@
           </div>
 
           <div class="hero-visual" aria-label="Profile and technology showcase">
-            <div class="profile-orbit tilt-card" id="profile-orbit">
+            <div class="profile-orbit tilt-card floating-3d-element" id="profile-orbit">
               <div class="orbit-glow"></div>
+              
+              <!-- 3D Animated Energy Pulse Waves -->
+              <div class="energy-pulse pulse-1"></div>
+              <div class="energy-pulse pulse-2"></div>
+              <div class="energy-pulse pulse-3"></div>
+
+              <!-- Rotating Planetary Glow Rings -->
               <div class="orbit-ring orbit-ring-1"></div>
               <div class="orbit-ring orbit-ring-2"></div>
               <div class="orbit-ring orbit-ring-3"></div>
               
+              <!-- Core 3D Hologram Frame -->
               <div class="orbit-core">
+                <div class="core-specular-sheen"></div>
                 <img src="/{{ profile.profile_image }}" alt="{{ profile.name }} - Backend Developer" class="profile-img">
               </div>
 
-              <!-- Orbiting Tech Badges -->
+              <!-- Orbiting Tech Badges with Independent Floating & Hover Pause -->
               <span class="tech-badge tech-badge-python" title="Python">
                 <i class="fa-brands fa-python"></i> Python
               </span>
@@ -363,10 +378,13 @@
             <p class="eyebrow"><i class="fa-solid fa-timeline"></i> Milestones</p>
             <h2>Progression from foundational code to production systems.</h2>
           </div>
-          <div class="timeline">
+          <div class="timeline" id="journey-timeline">
+            <div class="timeline-glow-line" id="timeline-glow-line" aria-hidden="true"></div>
             {% for milestone in timeline %}
-            <article class="timeline-item">
-              <div class="timeline-marker"></div>
+            <article class="timeline-item tilt-card" data-year="{{ milestone.year }}">
+              <div class="timeline-marker">
+                <div class="marker-pulse"></div>
+              </div>
               <div class="timeline-year">{{ milestone.year }}</div>
               <div class="timeline-content">
                 <h3>{{ milestone.title }}</h3>

@@ -310,3 +310,17 @@
     width: 100%;
   }
 }
+
+/* --------------------------------------------------------------------------
+   Touch & Pointer Optimizations
+   -------------------------------------------------------------------------- */
+@media (hover: none) and (pointer: coarse) {
+  .cursor-spotlight {
+    display: none !important;
+  }
+
+  .tilt-card {
+    transform: none !important;
+  }
+}
+
